@@ -4,6 +4,11 @@ import { useEffect, useRef, useState } from "react";
 
 const EMAIL = "manyaparwal@gmail.com";
 
+function handleEmailClick(event: React.MouseEvent<HTMLAnchorElement>) {
+  event.preventDefault();
+  window.location.assign(`mailto:${EMAIL}`);
+}
+
 const socialLinks = [
   { label: "LinkedIn", url: "https://www.linkedin.com/in/manya-parwal-530720290" },
   { label: "Behance", url: "https://www.behance.net/manyaparwal2912" },
@@ -58,6 +63,7 @@ export default function ContactSection() {
             <div className="flex flex-col gap-8">
               <a
                 href={`mailto:${EMAIL}`}
+                onClick={handleEmailClick}
                 className="group inline-flex w-full items-center justify-between rounded-[24px] border border-white/10 bg-[#171721]/90 px-6 py-5 text-left text-sm text-white transition duration-300 hover:border-[#8B5CF6]/40 hover:bg-[#1f1f2b]"
               >
                 <div>
@@ -67,17 +73,18 @@ export default function ContactSection() {
                 <span className="text-2xl transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
 
-              <div className="space-y-4">
+              <div className="flex flex-col gap-3 sm:gap-4">
                 {socialLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-sm text-zinc-300 transition duration-200 hover:text-white"
+                    className="inline-flex items-center gap-2.5 text-sm text-zinc-300 transition duration-200 hover:text-white"
                   >
                     <span className="h-2.5 w-2.5 rounded-full bg-[#8B5CF6]" />
-                    {link.label}
+                    <span>{link.label}</span>
+                    <span className="text-[11px] text-[#8B5CF6] transition-transform duration-200 group-hover:translate-x-1">↗</span>
                   </a>
                 ))}
               </div>
