@@ -1,0 +1,486 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ===========================================
+   ROOT VARIABLES
+=========================================== */
+
+:root {
+  --color-canvas: #0f1115;
+  --color-surface: #171a20;
+  --color-surface-hover: #1e222b;
+  --color-surface-active: #252a34;
+
+  --color-text-primary: #f3f3f3;
+  --color-text-secondary: #b6b6b6;
+
+  --color-border: #343a46;
+
+  --color-accent-purple: #9a6bff;
+  --color-accent-cyan: #52c7ea;
+
+  --font-geist: "Geist", sans-serif;
+  --font-instrument-serif: "Instrument Serif", serif;
+}
+
+
+/* ===========================================
+   HTML
+=========================================== */
+
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  font-family: var(--font-geist);
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(154, 107, 255, 0.38);
+  color: #f5f5f7;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+section {
+  scroll-margin-top: 5.5rem;
+}
+
+
+/* ===========================================
+   BODY
+=========================================== */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(120, 90, 255, 0.18),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(80, 50, 180, 0.12),
+      transparent 25%
+    ),
+    #0b0c12;
+
+  color: var(--color-text-primary);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ===========================================
+   GLOBAL RESET
+=========================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* ===========================================
+   HERO — LOGO
+=========================================== */
+
+.hero-logo {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fade-slide-down 0.65s ease-out forwards 0.2s;
+}
+
+
+/* ===========================================
+   HERO — AVAILABILITY STATUS
+=========================================== */
+
+.hero-status {
+  opacity: 0;
+  transform: translateX(10px);
+  animation: fade-slide-left 0.65s ease-out forwards 0.35s;
+}
+
+.hero-status-dot {
+  animation: status-pulse 1.6s ease-in-out infinite 0.35s;
+}
+
+
+/* ===========================================
+   HERO — SUBTITLE
+=========================================== */
+
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fade-slide-up 0.65s ease-out forwards 0.65s;
+}
+
+
+/* ===========================================
+   HERO — MAIN HEADING
+=========================================== */
+
+.hero-heading-mask {
+  overflow: hidden;
+}
+
+.hero-heading-reveal {
+  opacity: 0;
+  transform: translateY(100%);
+  animation: reveal-from-bottom 1.05s ease-out forwards 1s;
+}
+
+
+/* ===========================================
+   HERO — PURPLE ITALIC TEXT
+=========================================== */
+
+.hero-italic-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(3px);
+  animation: reveal-italic 0.85s ease-out forwards 1.2s;
+}
+
+
+/* ===========================================
+   HERO — SUPPORTING COPY
+=========================================== */
+
+.hero-copy {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fade-slide-up 0.75s ease-out forwards 1.4s;
+}
+
+
+/* ===========================================
+   PORTRAIT — BACKGROUND GLOW
+=========================================== */
+
+.portrait-glow {
+  opacity: 0.08;
+  transform: scale(0.94);
+  animation: glow-expand 0.75s ease-out forwards 1.3s;
+}
+
+
+/* ===========================================
+   PORTRAIT — ENTRANCE
+=========================================== */
+
+.portrait-entrance {
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  animation: portrait-appear 0.75s ease-out forwards 1.3s;
+}
+
+
+/* ===========================================
+   HERO CARDS
+=========================================== */
+
+.hero-card {
+  opacity: 0;
+  transform: translateX(16px);
+  animation: card-slide-in 0.65s ease-out forwards;
+}
+
+.hero-card:nth-child(1) {
+  animation-delay: 1.45s;
+}
+
+.hero-card:nth-child(2) {
+  animation-delay: 1.57s;
+}
+
+.hero-card:nth-child(3) {
+  animation-delay: 1.7s;
+}
+
+
+/* ===========================================
+   CURSOR HINT
+=========================================== */
+
+.cursor-hint {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fade-slide-up 0.55s ease-out forwards 1.8s;
+}
+
+.cursor-hint-path,
+.cursor-hint-head {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  opacity: 0;
+  animation: draw-path 0.9s ease-out forwards 1.85s;
+}
+
+.cursor-hint-head {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+}
+
+.cursor-hint-text {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fade-slide-up 0.55s ease-out forwards 1.95s;
+}
+
+
+/* ===========================================
+   HERO TAGLINE
+=========================================== */
+
+.hero-tagline {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fade-slide-up 0.55s ease-out forwards 1.95s;
+}
+
+.sparkle-glow {
+  animation: sparkle-pulse 2.5s ease-in-out infinite 2.2s;
+}
+
+
+/* ===========================================
+   KEYFRAMES — FADE DOWN
+=========================================== */
+
+@keyframes fade-slide-down {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — FADE LEFT
+=========================================== */
+
+@keyframes fade-slide-left {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — FADE UP
+=========================================== */
+
+@keyframes fade-slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — HEADING REVEAL
+=========================================== */
+
+@keyframes reveal-from-bottom {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — ITALIC REVEAL
+=========================================== */
+
+@keyframes reveal-italic {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — PORTRAIT ENTRANCE
+=========================================== */
+
+@keyframes portrait-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — GLOW EXPAND
+=========================================== */
+
+@keyframes glow-expand {
+  from {
+    opacity: 0.08;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — CARD ENTRANCE
+=========================================== */
+
+@keyframes card-slide-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — DRAW ARROW
+=========================================== */
+
+@keyframes draw-path {
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — STATUS PULSE
+=========================================== */
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 0.75;
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — SPARKLE
+=========================================== */
+
+@keyframes sparkle-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(
+      0 0 4px rgba(154, 107, 255, 0.45)
+    );
+  }
+
+  50% {
+    filter: drop-shadow(
+      0 0 8px rgba(154, 107, 255, 0.55)
+    );
+  }
+}
+
+
+/* ===========================================
+   GLOBAL CUSTOM FIGMA CURSOR
+=========================================== */
+
+/*
+   On desktop/laptop devices with a precise
+   mouse pointer, hide the browser's native
+   cursor everywhere.
+
+   The purple cursor from CustomCursor.tsx
+   will remain visible.
+*/
+
+@media (pointer: fine) and (min-width: 768px) {
+  html,
+  body,
+  body *,
+  body *::before,
+  body *::after {
+    cursor: none !important;
+  }
+}
+
+
+/*
+   Extra class applied by CustomCursor.tsx.
+   This forces the native browser cursor to
+   remain hidden across every page element.
+*/
+
+.custom-cursor-active,
+.custom-cursor-active *,
+.custom-cursor-active *::before,
+.custom-cursor-active *::after {
+  cursor: none !important;
+}
+
+
+/* ===========================================
+   TOUCH DEVICES
+=========================================== */
+
+@media (pointer: coarse) {
+  html,
+  body,
+  body * {
+    cursor: auto !important;
+  }
+}
+
+
+/* ===========================================
+   REDUCED MOTION
+=========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo,
+  .hero-status,
+  .hero-status-dot,
+  .hero-subtitle,
+  .hero-heading-reveal,
+  .hero-italic-reveal,
+  .hero-copy,
+  .portrait-entrance,
+  .portrait-glow,
+  .hero-card,
+  .cursor-hint,
+  .cursor-hint-path,
+  .cursor-hint-head,
+  .cursor-hint-text,
+  .hero-tagline,
+  .sparkle-glow {
+    animation: none !important;
+    transition: none !important;
+  }
+}

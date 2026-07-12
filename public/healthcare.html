@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Selected healthcare website work by Manya Parwal, featuring live projects for Dr. Shachi Singh and Dr. Akash Dubey."
+  />
+
+  <title>Healthcare Work — Manya Parwal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+
+      overflow-x: hidden;
+
+      background: #f4f0e8;
+      color: #25232b;
+
+      font-family: "Manrope", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    :root {
+      --cream: #f4f0e8;
+      --off-white: #faf8f3;
+      --warm-surface: #ede5d8;
+
+      --ink: #25232b;
+      --muted: #716b68;
+
+      --purple: #8b5cf6;
+      --deep-plum: #4b294f;
+
+      --shachi-pink: #c9819b;
+      --shachi-lilac: #b9a4d6;
+
+      --akash-teal: #4e8f91;
+      --akash-blue: #648ba7;
+
+      --border: rgba(37, 35, 43, 0.12);
+
+      --page-pad: clamp(20px, 5vw, 82px);
+      --section-pad: clamp(72px, 8vw, 118px);
+
+      --serif: "Instrument Serif", Georgia, serif;
+      --sans: "Manrope", Arial, sans-serif;
+    }
+
+
+    /* =========================================================
+       SELECTION
+    ========================================================= */
+
+    ::selection {
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--ink);
+    }
+
+
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+    .section {
+      position: relative;
+
+      padding:
+        var(--section-pad)
+        var(--page-pad);
+    }
+
+    .section-inner {
+      width: min(100%, 1480px);
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-bottom: 20px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1;
+
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      width: 24px;
+      height: 1px;
+
+      background: currentColor;
+      opacity: 0.6;
+    }
+
+    .serif {
+      font-family: var(--serif);
+      font-weight: 400;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       STICKY BACK
+    ========================================================= */
+
+    .sticky-back {
+      position: fixed;
+      top: 22px;
+      left: 22px;
+      z-index: 999;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 7px 14px 7px 7px;
+
+      border:
+        1px solid
+        rgba(37, 35, 43, 0.1);
+
+      border-radius: 100px;
+
+      background:
+        rgba(250, 248, 243, 0.82);
+
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+
+      box-shadow:
+        0 8px 30px
+        rgba(37, 35, 43, 0.07);
+
+      color: var(--ink);
+
+      text-decoration: none;
+
+      font-size: 11px;
+      font-weight: 600;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .sticky-back:hover {
+      transform: translateY(-2px);
+
+      background:
+        rgba(255, 255, 255, 0.96);
+
+      box-shadow:
+        0 12px 34px
+        rgba(37, 35, 43, 0.1);
+    }
+
+    .back-circle {
+      width: 30px;
+      height: 30px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(139, 92, 246, 0.1);
+
+      color: var(--purple);
+
+      transition: transform 0.25s ease;
+    }
+
+    .sticky-back:hover .back-circle {
+      transform: translateX(-3px);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+
+      min-height: min(880px, 92vh);
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+
+      padding:
+        clamp(100px, 9vw, 150px)
+        var(--page-pad)
+        clamp(70px, 7vw, 110px);
+
+      background:
+        radial-gradient(
+          circle at 85% 10%,
+          rgba(185, 164, 214, 0.28),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 5% 90%,
+          rgba(78, 143, 145, 0.12),
+          transparent 30%
+        ),
+        var(--cream);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 5;
+
+      width: min(100%, 1500px);
+      margin-inline: auto;
+
+      display: grid;
+      grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(440px, 1.1fr);
+
+      align-items: center;
+      gap: clamp(45px, 7vw, 120px);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-title {
+      max-width: 780px;
+
+      margin: 0;
+
+      font-family: var(--serif);
+      font-size: clamp(72px, 7.8vw, 145px);
+      font-weight: 400;
+
+      line-height: 0.82;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-title em {
+      color: var(--deep-plum);
+      font-weight: 400;
+    }
+
+    .hero-description {
+      max-width: 610px;
+
+      margin: 32px 0 0;
+
+      color: var(--muted);
+
+      font-size: clamp(14px, 1.05vw, 17px);
+      line-height: 1.75;
+    }
+
+    .hero-tags {
+      margin-top: 30px;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      padding: 8px 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 100px;
+
+      background:
+        rgba(255, 255, 255, 0.38);
+
+      color: #5f5a58;
+
+      font-size: 10px;
+      font-weight: 600;
+
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       HERO MEDICAL DETAILS
+    ========================================================= */
+
+    .medical-grid {
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: 0.22;
+
+      background-image:
+        linear-gradient(
+          rgba(75, 41, 79, 0.08) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(75, 41, 79, 0.08) 1px,
+          transparent 1px
+        );
+
+      background-size: 70px 70px;
+
+      mask-image:
+        linear-gradient(
+          to right,
+          transparent,
+          black 35%,
+          black 85%,
+          transparent
+        );
+    }
+
+    .medical-cross {
+      position: absolute;
+
+      color: var(--deep-plum);
+
+      font-family: var(--serif);
+
+      opacity: 0.1;
+
+      pointer-events: none;
+    }
+
+    .cross-one {
+      top: 15%;
+      left: 4%;
+
+      font-size: 80px;
+    }
+
+    .cross-two {
+      right: 4%;
+      bottom: 9%;
+
+      font-size: 120px;
+    }
+
+    .medical-orbit {
+      position: absolute;
+
+      width: 320px;
+      height: 320px;
+
+      right: -110px;
+      top: 12%;
+
+      border:
+        1px solid
+        rgba(75, 41, 79, 0.12);
+
+      border-radius: 50%;
+
+      pointer-events: none;
+    }
+
+    .medical-orbit::before,
+    .medical-orbit::after {
+      content: "";
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(75, 41, 79, 0.1);
+    }
+
+    .medical-orbit::before {
+      inset: 45px;
+    }
+
+    .medical-orbit::after {
+      inset: 100px;
+    }
+
+    .coordinate-label {
+      position: absolute;
+
+      color: rgba(75, 41, 79, 0.3);
+
+      font-size: 9px;
+      font-weight: 600;
+
+      letter-spacing: 0.15em;
+
+      pointer-events: none;
+    }
+
+    .coordinate-one {
+      left: 3%;
+      bottom: 10%;
+    }
+
+    .coordinate-two {
+      top: 10%;
+      right: 6%;
+    }
+
+
+    /* =========================================================
+       HERO BROWSERS
+    ========================================================= */
+
+    .hero-visual {
+      position: relative;
+
+      min-height: 540px;
+    }
+
+    .hero-browser {
+      position: absolute;
+
+      overflow: hidden;
+
+      border:
+        1px solid
+        rgba(37, 35, 43, 0.1);
+
+      border-radius: 15px;
+
+      background: white;
+
+      box-shadow:
+        0 30px 70px
+        rgba(50, 39, 47, 0.14);
+    }
+
+    .hero-browser-one {
+      width: 76%;
+
+      top: 10%;
+      right: 0;
+
+      z-index: 2;
+
+      transform: rotate(1.2deg);
+    }
+
+    .hero-browser-two {
+      width: 68%;
+
+      left: 0;
+      bottom: 5%;
+
+      z-index: 3;
+
+      transform: rotate(-1.5deg);
+    }
+
+    .mini-browser-bar {
+      height: 30px;
+
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      padding-inline: 10px;
+
+      background: #f5f3ef;
+
+      border-bottom:
+        1px solid
+        rgba(37, 35, 43, 0.08);
+    }
+
+    .mini-dot {
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(37, 35, 43, 0.2);
+    }
+
+    .hero-browser-image {
+      height: 330px;
+
+      overflow: hidden;
+
+      background: #eee;
+    }
+
+    .hero-browser-image img {
+      width: 100%;
+      height: auto;
+
+      transform: translateY(0);
+
+      transition:
+        transform 10s
+        cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .hero-browser:hover
+    .hero-browser-image img {
+      transform: translateY(-40%);
+    }
+
+
+    /* =========================================================
+       INTRO STRIP
+    ========================================================= */
+
+    .intro-strip {
+      padding:
+        clamp(65px, 6vw, 90px)
+        var(--page-pad);
+
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+
+      background: var(--off-white);
+    }
+
+    .intro-grid {
+      width: min(100%, 1450px);
+      margin-inline: auto;
+
+      display: grid;
+      grid-template-columns: 0.75fr 1.3fr;
+      gap: clamp(40px, 8vw, 140px);
+
+      align-items: start;
+    }
+
+    .intro-heading {
+      margin: 0;
+
+      font-family: var(--serif);
+      font-size: clamp(48px, 5vw, 88px);
+      font-weight: 400;
+
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+    }
+
+    .intro-right {
+      padding-top: 8px;
+    }
+
+    .intro-copy {
+      max-width: 680px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: clamp(14px, 1.1vw, 17px);
+      line-height: 1.8;
+    }
+
+    .intro-numbers {
+      margin-top: 32px;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+
+    .intro-stat strong {
+      display: block;
+
+      color: var(--ink);
+
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 400;
+    }
+
+    .intro-stat span {
+      display: block;
+
+      margin-top: 3px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 600;
+
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       PROJECT SECTIONS
+    ========================================================= */
+
+    .project {
+      padding:
+        clamp(80px, 8vw, 125px)
+        var(--page-pad);
+
+      background: var(--cream);
+    }
+
+    .project-akash {
+      background: var(--off-white);
+    }
+
+    .project-inner {
+      width: min(100%, 1500px);
+      margin-inline: auto;
+    }
+
+    .project-heading-row {
+      display: grid;
+      grid-template-columns:
+        minmax(280px, 0.65fr)
+        minmax(0, 1.35fr);
+
+      gap: clamp(45px, 8vw, 130px);
+
+      align-items: end;
+
+      margin-bottom: 48px;
+    }
+
+    .project-number {
+      margin-bottom: 18px;
+
+      color: var(--muted);
+
+      font-family: var(--serif);
+      font-size: 28px;
+    }
+
+    .project-title {
+      margin: 0;
+
+      font-family: var(--serif);
+      font-size: clamp(58px, 7vw, 112px);
+      font-weight: 400;
+
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+    }
+
+    .project-category {
+      margin-top: 16px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 600;
+
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .project-copy {
+      max-width: 680px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: clamp(14px, 1.05vw, 17px);
+      line-height: 1.8;
+    }
+
+    .project-layout {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(280px, 0.5fr);
+
+      gap: clamp(30px, 5vw, 75px);
+
+      align-items: start;
+    }
+
+    .project-akash .project-layout {
+      grid-template-columns:
+        minmax(280px, 0.5fr)
+        minmax(0, 1.5fr);
+    }
+
+    .project-akash .browser-shell {
+      order: 2;
+    }
+
+    .project-akash .project-side {
+      order: 1;
+    }
+
+
+    /* =========================================================
+       BROWSER
+    ========================================================= */
+
+    .browser-shell {
+      overflow: hidden;
+
+      border:
+        1px solid
+        rgba(37, 35, 43, 0.12);
+
+      border-radius: 18px;
+
+      background: white;
+
+      box-shadow:
+        0 28px 70px
+        rgba(47, 39, 42, 0.11);
+    }
+
+    .browser-bar {
+      height: 50px;
+
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+
+      gap: 16px;
+
+      padding-inline: 17px;
+
+      background: #f6f4f0;
+
+      border-bottom:
+        1px solid
+        rgba(37, 35, 43, 0.08);
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(37, 35, 43, 0.18);
+    }
+
+    .browser-url {
+      width: min(100%, 390px);
+      margin-inline: auto;
+
+      padding: 7px 13px;
+
+      overflow: hidden;
+
+      border:
+        1px solid
+        rgba(37, 35, 43, 0.08);
+
+      border-radius: 100px;
+
+      background:
+        rgba(255, 255, 255, 0.75);
+
+      color: #8b8581;
+
+      font-size: 9px;
+
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .browser-menu {
+      color: #99918c;
+      font-size: 13px;
+    }
+
+    .browser-viewport {
+      position: relative;
+
+      height:
+        clamp(430px, 53vw, 720px);
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      overscroll-behavior: contain;
+
+      background: white;
+
+      scrollbar-width: thin;
+      scrollbar-color:
+        rgba(75, 41, 79, 0.24)
+        transparent;
+    }
+
+    .browser-viewport::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .browser-viewport::-webkit-scrollbar-thumb {
+      border-radius: 20px;
+
+      background:
+        rgba(75, 41, 79, 0.24);
+    }
+
+    .browser-viewport img {
+      width: 100%;
+      height: auto;
+    }
+
+
+    /* =========================================================
+       PROJECT SIDE
+    ========================================================= */
+
+    .project-side {
+      position: sticky;
+      top: 100px;
+
+      padding-top: 10px;
+    }
+
+    .side-label {
+      margin-bottom: 18px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 600;
+
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .focus-list {
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .focus-item {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+
+      padding: 17px 0;
+
+      border-bottom: 1px solid var(--border);
+
+      color: #5e5957;
+
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .focus-number {
+      color: #a09a96;
+      font-family: var(--serif);
+      font-size: 16px;
+    }
+
+    .scroll-hint {
+      margin-top: 22px;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      color: #8b8581;
+
+      font-size: 10px;
+    }
+
+    .scroll-hint span {
+      display: grid;
+      place-items: center;
+
+      width: 25px;
+      height: 25px;
+
+      border:
+        1px solid
+        rgba(37, 35, 43, 0.12);
+
+      border-radius: 50%;
+    }
+
+    .live-link {
+      margin-top: 25px;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 13px 17px;
+
+      border-radius: 100px;
+
+      background: var(--ink);
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 11px;
+      font-weight: 600;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .live-link:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 10px 25px
+        rgba(37, 35, 43, 0.16);
+    }
+
+
+    /* =========================================================
+       BONE MECHANIC CALLOUT
+    ========================================================= */
+
+    .bone-mechanic {
+      margin-bottom: 28px;
+
+      padding: 22px;
+
+      border:
+        1px solid
+        rgba(78, 143, 145, 0.18);
+
+      border-radius: 14px;
+
+      background:
+        rgba(78, 143, 145, 0.07);
+    }
+
+    .bone-mechanic small {
+      display: block;
+
+      margin-bottom: 6px;
+
+      color: var(--akash-teal);
+
+      font-size: 9px;
+      font-weight: 600;
+
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .bone-mechanic strong {
+      font-family: var(--serif);
+      font-size: 29px;
+      font-weight: 400;
+    }
+
+
+    /* =========================================================
+       TRANSITION BANNER
+    ========================================================= */
+
+    .transition-banner {
+      position: relative;
+
+      overflow: hidden;
+
+      padding:
+        clamp(70px, 7vw, 105px)
+        var(--page-pad);
+
+      background: var(--deep-plum);
+      color: white;
+
+      text-align: center;
+    }
+
+    .transition-banner::before {
+      content: "+";
+
+      position: absolute;
+      top: -90px;
+      right: 6%;
+
+      color:
+        rgba(255, 255, 255, 0.05);
+
+      font-family: var(--serif);
+      font-size: 300px;
+    }
+
+    .transition-banner::after {
+      content: "";
+
+      position: absolute;
+      left: 5%;
+      bottom: -170px;
+
+      width: 360px;
+      height: 360px;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+      border-radius: 50%;
+    }
+
+    .transition-inner {
+      position: relative;
+      z-index: 2;
+
+      width: min(100%, 1100px);
+      margin-inline: auto;
+    }
+
+    .transition-label {
+      margin-bottom: 24px;
+
+      color:
+        rgba(255, 255, 255, 0.45);
+
+      font-size: 9px;
+      font-weight: 600;
+
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .transition-title {
+      margin: 0;
+
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 92px);
+      font-weight: 400;
+
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .transition-title em {
+      color: #d4c2d7;
+      font-weight: 400;
+    }
+
+
+    /* =========================================================
+       LEARNINGS
+    ========================================================= */
+
+    .learnings {
+      padding:
+        clamp(85px, 8vw, 125px)
+        var(--page-pad);
+
+      background: var(--warm-surface);
+    }
+
+    .learnings-inner {
+      width: min(100%, 1450px);
+      margin-inline: auto;
+    }
+
+    .learnings-head {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+
+      gap: clamp(40px, 8vw, 130px);
+
+      align-items: end;
+
+      margin-bottom: 48px;
+    }
+
+    .learnings-title {
+      margin: 0;
+
+      font-family: var(--serif);
+      font-size: clamp(52px, 6vw, 100px);
+      font-weight: 400;
+
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+    }
+
+    .learnings-intro {
+      max-width: 580px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .learning-item {
+      min-height: 220px;
+
+      padding: clamp(25px, 3vw, 42px);
+
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .learning-number {
+      margin-bottom: 30px;
+
+      color: #9d9690;
+
+      font-family: var(--serif);
+      font-size: 19px;
+    }
+
+    .learning-item h3 {
+      margin: 0 0 12px;
+
+      font-family: var(--serif);
+      font-size: clamp(27px, 2.5vw, 39px);
+      font-weight: 400;
+
+      line-height: 1;
+    }
+
+    .learning-item p {
+      max-width: 500px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       CLOSING
+    ========================================================= */
+
+    .closing {
+      position: relative;
+
+      overflow: hidden;
+
+      padding:
+        clamp(90px, 9vw, 145px)
+        var(--page-pad)
+        28px;
+
+      background: #28252e;
+      color: white;
+    }
+
+    .closing::before {
+      content: "";
+
+      position: absolute;
+      top: -300px;
+      left: -200px;
+
+      width: 600px;
+      height: 600px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(139, 92, 246, 0.1);
+
+      filter: blur(90px);
+    }
+
+    .closing-inner {
+      position: relative;
+      z-index: 2;
+
+      width: min(100%, 1300px);
+      margin-inline: auto;
+
+      text-align: center;
+    }
+
+    .closing-title {
+      max-width: 1050px;
+
+      margin: 0 auto;
+
+      font-family: var(--serif);
+      font-size: clamp(60px, 8vw, 130px);
+      font-weight: 400;
+
+      line-height: 0.85;
+      letter-spacing: -0.055em;
+    }
+
+    .closing-title em {
+      color: #d8c5dc;
+      font-weight: 400;
+    }
+
+    .live-projects {
+      width: min(100%, 760px);
+
+      margin:
+        clamp(45px, 5vw, 70px)
+        auto 0;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      border-top:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+      border-left:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+    }
+
+    .live-project-card {
+      min-height: 120px;
+
+      padding: 24px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      border-right:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+      border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+      color: white;
+      text-decoration: none;
+
+      text-align: left;
+
+      transition: background 0.25s ease;
+    }
+
+    .live-project-card:hover {
+      background:
+        rgba(255, 255, 255, 0.06);
+    }
+
+    .live-project-card strong {
+      font-family: var(--serif);
+      font-size: 27px;
+      font-weight: 400;
+    }
+
+    .live-project-card span {
+      margin-top: 20px;
+
+      color:
+        rgba(255, 255, 255, 0.52);
+
+      font-size: 10px;
+    }
+
+    .closing-nav {
+      margin-top: 45px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .closing-button {
+      padding: 14px 18px;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      border-radius: 100px;
+
+      text-decoration: none;
+
+      font-size: 11px;
+      font-weight: 600;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .closing-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .closing-button-primary {
+      background: white;
+      color: var(--ink);
+    }
+
+    .closing-button-secondary {
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.17);
+
+      background:
+        rgba(255, 255, 255, 0.06);
+
+      color: white;
+    }
+
+    .closing-button-secondary:hover {
+      background:
+        rgba(255, 255, 255, 0.11);
+    }
+
+    .signature {
+      position: relative;
+      z-index: 2;
+
+      margin: 95px 0 0;
+
+      color:
+        rgba(255, 255, 255, 0.3);
+
+      font-size: 10px;
+      letter-spacing: 0.08em;
+
+      text-align: center;
+    }
+
+
+    /* =========================================================
+       FOCUS
+    ========================================================= */
+
+    a:focus-visible,
+    .browser-viewport:focus-visible {
+      outline:
+        2px solid
+        var(--purple);
+
+      outline-offset: 4px;
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 1100px) {
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        max-width: 800px;
+      }
+
+      .hero-visual {
+        width: min(100%, 850px);
+        min-height: 500px;
+      }
+
+      .project-heading-row,
+      .learnings-head {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .project-layout,
+      .project-akash .project-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .project-akash .browser-shell,
+      .project-akash .project-side {
+        order: initial;
+      }
+
+      .project-side {
+        position: static;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+
+      .project-side .live-link,
+      .project-side .scroll-hint {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
+
+      .bone-mechanic {
+        margin: 0;
+      }
+
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+      :root {
+        --page-pad: 18px;
+        --section-pad: 72px;
+      }
+
+      .sticky-back {
+        top: 12px;
+        left: 12px;
+
+        padding: 5px 11px 5px 5px;
+
+        font-size: 10px;
+      }
+
+      .back-circle {
+        width: 27px;
+        height: 27px;
+      }
+
+      .hero {
+        padding-top: 100px;
+      }
+
+      .hero-title {
+        font-size:
+          clamp(64px, 19vw, 90px);
+      }
+
+      .hero-description {
+        margin-top: 24px;
+      }
+
+      .hero-visual {
+        min-height: 380px;
+        margin-top: 10px;
+      }
+
+      .hero-browser-one {
+        width: 88%;
+      }
+
+      .hero-browser-two {
+        width: 82%;
+      }
+
+      .hero-browser-image {
+        height: 230px;
+      }
+
+      .medical-grid {
+        background-size: 45px 45px;
+      }
+
+      .cross-one,
+      .coordinate-two,
+      .medical-orbit {
+        display: none;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .intro-heading {
+        font-size: 55px;
+      }
+
+      .intro-numbers {
+        gap: 20px;
+      }
+
+      .project {
+        padding:
+          75px
+          var(--page-pad);
+      }
+
+      .project-title {
+        font-size:
+          clamp(60px, 17vw, 82px);
+      }
+
+      .project-heading-row {
+        margin-bottom: 32px;
+      }
+
+      .browser-bar {
+        height: 42px;
+        padding-inline: 11px;
+      }
+
+      .browser-url {
+        font-size: 7px;
+      }
+
+      .browser-viewport {
+        height: 470px;
+      }
+
+      .project-side {
+        grid-template-columns: 1fr;
+      }
+
+      .project-side .live-link,
+      .project-side .scroll-hint {
+        grid-column: auto;
+      }
+
+      .transition-banner {
+        padding:
+          70px
+          var(--page-pad);
+      }
+
+      .transition-title {
+        font-size:
+          clamp(48px, 14vw, 68px);
+      }
+
+      .learnings-head {
+        margin-bottom: 34px;
+      }
+
+      .learnings-title {
+        font-size:
+          clamp(54px, 16vw, 75px);
+      }
+
+      .learning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .learning-item {
+        min-height: 0;
+      }
+
+      .closing-title {
+        font-size:
+          clamp(58px, 17vw, 80px);
+      }
+
+      .live-projects {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-nav {
+        flex-direction: column;
+      }
+
+      .closing-button {
+        width: min(100%, 280px);
+        justify-content: center;
+      }
+
+      .signature {
+        margin-top: 75px;
+      }
+
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (
+      prefers-reduced-motion: reduce
+    ) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+<script src="/case-study-cursor.js"></script>
+
+  <!-- STICKY BACK -->
+
+  <a
+    href="/#selected-work"
+    class="sticky-back"
+    aria-label="Back to portfolio"
+  >
+    <span class="back-circle">←</span>
+    <span>Back to Portfolio</span>
+  </a>
+
+
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
+
+  <header class="hero">
+
+    <div class="medical-grid"></div>
+
+    <span
+      class="medical-cross cross-one"
+      aria-hidden="true"
+    >
+      +
+    </span>
+
+    <span
+      class="medical-cross cross-two"
+      aria-hidden="true"
+    >
+      +
+    </span>
+
+    <div
+      class="medical-orbit"
+      aria-hidden="true"
+    ></div>
+
+    <span
+      class="coordinate-label coordinate-one"
+      aria-hidden="true"
+    >
+      CARE / 01 · CLARITY / 02
+    </span>
+
+    <span
+      class="coordinate-label coordinate-two"
+      aria-hidden="true"
+    >
+      HEALTHCARE · SELECTED WORK
+    </span>
+
+
+    <div class="hero-inner">
+
+      <div class="hero-copy reveal">
+
+        <div class="eyebrow">
+          Selected Healthcare Work · 04
+        </div>
+
+        <h1 class="hero-title">
+          Designing healthcare
+          to feel a little
+          <em>less clinical.</em>
+        </h1>
+
+        <p class="hero-description">
+          During my time at Zarle, I worked across
+          healthcare websites for doctors and medical
+          practices. Different specialities, different
+          people, but the same challenge kept coming back,
+          how do you make important information easier to
+          find and less overwhelming?
+        </p>
+
+        <div class="hero-tags">
+          <span class="hero-tag">Healthcare</span>
+          <span class="hero-tag">Web Design</span>
+          <span class="hero-tag">UI/UX</span>
+          <span class="hero-tag">Client Work</span>
+        </div>
+
+      </div>
+
+
+      <div
+        class="hero-visual reveal"
+        aria-label="Preview of selected healthcare websites"
+      >
+
+        <div
+          class="
+            hero-browser
+            hero-browser-one
+          "
+        >
+
+          <div class="mini-browser-bar">
+            <span class="mini-dot"></span>
+            <span class="mini-dot"></span>
+            <span class="mini-dot"></span>
+          </div>
+
+          <div class="hero-browser-image">
+            <img
+              src="/healthcare/dr-shachi-home.png"
+              alt="Dr. Shachi Singh website preview"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+        </div>
+
+
+        <div
+          class="
+            hero-browser
+            hero-browser-two
+          "
+        >
+
+          <div class="mini-browser-bar">
+            <span class="mini-dot"></span>
+            <span class="mini-dot"></span>
+            <span class="mini-dot"></span>
+          </div>
+
+          <div class="hero-browser-image">
+            <img
+              src="/healthcare/dr-akash-home.png"
+              alt="Dr. Akash Dubey website preview"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       INTRO
+  ======================================================== -->
+
+  <section class="intro-strip">
+
+    <div class="intro-grid">
+
+      <div class="reveal">
+
+        <div class="eyebrow">
+          The work
+        </div>
+
+        <h2 class="intro-heading">
+          Two live websites.
+          Two very different
+          kinds of trust.
+        </h2>
+
+      </div>
+
+
+      <div class="intro-right reveal">
+
+        <p class="intro-copy">
+          One speaks to women looking for clarity around
+          their health. The other speaks to people dealing
+          with pain, injuries and movement. Designing both
+          made me think more carefully about what people
+          actually need from a healthcare website before
+          they decide to take the next step.
+        </p>
+
+        <div class="intro-numbers">
+
+          <div class="intro-stat">
+            <strong>02</strong>
+            <span>Live websites</span>
+          </div>
+
+          <div class="intro-stat">
+            <strong>01</strong>
+            <span>Shared thought</span>
+          </div>
+
+          <div class="intro-stat">
+            <strong>Care</strong>
+            <span>Made easier to understand</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       DR SHACHI
+  ======================================================== -->
+
+  <section class="project">
+
+    <div class="project-inner">
+
+      <div class="project-heading-row">
+
+        <div class="reveal">
+
+          <div class="project-number">
+            01
+          </div>
+
+          <h2 class="project-title">
+            Dr. Shachi
+            <br />
+            Singh
+          </h2>
+
+          <div class="project-category">
+            Women's Health · Obstetrics · Gynaecology
+          </div>
+
+        </div>
+
+
+        <p class="project-copy reveal">
+          This one needed to feel reassuring without
+          becoming overly soft or decorative. The
+          information still had to stay clear, especially
+          when someone might already be visiting with
+          questions or uncertainty.
+        </p>
+
+      </div>
+
+
+      <div class="project-layout">
+
+        <div class="browser-shell reveal">
+
+          <div class="browser-bar">
+
+            <div class="browser-dots">
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+            </div>
+
+            <div class="browser-url">
+              drshachi.com
+            </div>
+
+            <span class="browser-menu">•••</span>
+
+          </div>
+
+
+          <div
+            class="browser-viewport"
+            tabindex="0"
+            aria-label="Scrollable preview of Dr. Shachi Singh website"
+          >
+            <img
+              src="/healthcare/dr-shachi-home.png"
+              alt="Full homepage design for Dr. Shachi Singh"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+        </div>
+
+
+        <aside class="project-side reveal">
+
+          <div>
+
+            <div class="side-label">
+              What I focused on
+            </div>
+
+            <ul class="focus-list">
+
+              <li class="focus-item">
+                <span class="focus-number">01</span>
+                <span>
+                  Clear paths to treatments and services
+                </span>
+              </li>
+
+              <li class="focus-item">
+                <span class="focus-number">02</span>
+                <span>
+                  A warmer visual tone without losing
+                  credibility
+                </span>
+              </li>
+
+              <li class="focus-item">
+                <span class="focus-number">03</span>
+                <span>
+                  Making the doctor, expertise and
+                  appointment journey easy to find
+                </span>
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <div class="scroll-hint">
+            <span>↓</span>
+            Scroll inside to explore
+          </div>
+
+
+          <a
+            href="https://www.drshachi.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="live-link"
+          >
+            Visit live website
+            <span>↗</span>
+          </a>
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       TRANSITION
+  ======================================================== -->
+
+  <section class="transition-banner">
+
+    <div class="transition-inner reveal">
+
+      <div class="transition-label">
+        What started to stand out
+      </div>
+
+      <h2 class="transition-title">
+        People are not always looking
+        <br />
+        for a <em>beautiful interface.</em>
+        <br />
+        Sometimes, they are simply
+        <br />
+        looking for reassurance.
+      </h2>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       DR AKASH
+  ======================================================== -->
+
+  <section class="project project-akash">
+
+    <div class="project-inner">
+
+      <div class="project-heading-row">
+
+        <div class="reveal">
+
+          <div class="project-number">
+            02
+          </div>
+
+          <h2 class="project-title">
+            Dr. Akash
+            <br />
+            Dubey
+          </h2>
+
+          <div class="project-category">
+            Orthopaedics · Joint Replacement · Arthroscopy
+          </div>
+
+        </div>
+
+
+        <p class="project-copy reveal">
+          This project had a completely different
+          personality. The direction was more direct, more
+          confident and a little more memorable. The idea
+          was to make orthopaedic care feel approachable
+          without making it feel casual.
+        </p>
+
+      </div>
+
+
+      <div class="project-layout">
+
+        <div class="browser-shell reveal">
+
+          <div class="browser-bar">
+
+            <div class="browser-dots">
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+            </div>
+
+            <div class="browser-url">
+              drakashdubeyortho.in
+            </div>
+
+            <span class="browser-menu">•••</span>
+
+          </div>
+
+
+          <div
+            class="browser-viewport"
+            tabindex="0"
+            aria-label="Scrollable preview of Dr. Akash Dubey website"
+          >
+            <img
+              src="/healthcare/dr-akash-home.png"
+              alt="Full homepage design for Dr. Akash Dubey"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+        </div>
+
+
+        <aside class="project-side reveal">
+
+          <div class="bone-mechanic">
+            <small>
+              The positioning
+            </small>
+
+            <strong>
+              Meet Your Bone Mechanic
+            </strong>
+          </div>
+
+
+          <div>
+
+            <div class="side-label">
+              What I focused on
+            </div>
+
+            <ul class="focus-list">
+
+              <li class="focus-item">
+                <span class="focus-number">01</span>
+                <span>
+                  Giving the doctor a distinct and
+                  memorable personality
+                </span>
+              </li>
+
+              <li class="focus-item">
+                <span class="focus-number">02</span>
+                <span>
+                  Making treatments and expertise easy
+                  to scan
+                </span>
+              </li>
+
+              <li class="focus-item">
+                <span class="focus-number">03</span>
+                <span>
+                  Keeping the experience direct without
+                  making it feel cold
+                </span>
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <div class="scroll-hint">
+            <span>↓</span>
+            Scroll inside to explore
+          </div>
+
+
+          <a
+            href="https://www.drakashdubeyortho.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="live-link"
+          >
+            Visit live website
+            <span>↗</span>
+          </a>
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       LEARNINGS
+  ======================================================== -->
+
+  <section class="learnings">
+
+    <div class="learnings-inner">
+
+      <div class="learnings-head">
+
+        <div class="reveal">
+
+          <div class="eyebrow">
+            Looking back
+          </div>
+
+          <h2 class="learnings-title">
+            What healthcare
+            changed in the
+            way I design.
+          </h2>
+
+        </div>
+
+
+        <p class="learnings-intro reveal">
+          Working on healthcare made me pay more attention
+          to the quiet decisions. The things that do not
+          necessarily look impressive in a screenshot, but
+          make a real difference when someone is trying to
+          understand what to do next.
+        </p>
+
+      </div>
+
+
+      <div class="learning-grid">
+
+        <article class="learning-item reveal">
+
+          <div class="learning-number">
+            01
+          </div>
+
+          <h3>
+            Clarity comes first
+          </h3>
+
+          <p>
+            A clever interaction means very little if
+            someone cannot quickly understand what a
+            doctor treats or how to book an appointment.
+          </p>
+
+        </article>
+
+
+        <article class="learning-item reveal">
+
+          <div class="learning-number">
+            02
+          </div>
+
+          <h3>
+            Trust lives in small details
+          </h3>
+
+          <p>
+            Typography, spacing, hierarchy and tone
+            quietly decide whether a website feels
+            reassuring or confusing.
+          </p>
+
+        </article>
+
+
+        <article class="learning-item reveal">
+
+          <div class="learning-number">
+            03
+          </div>
+
+          <h3>
+            Different doctors need different personalities
+          </h3>
+
+          <p>
+            Healthcare does not have to look the same
+            everywhere. A women's health website and an
+            orthopaedic website can feel completely
+            different while still being clear and
+            trustworthy.
+          </p>
+
+        </article>
+
+
+        <article class="learning-item reveal">
+
+          <div class="learning-number">
+            04
+          </div>
+
+          <h3>
+            The next step should never feel hidden
+          </h3>
+
+          <p>
+            Whether it is booking an appointment,
+            understanding a treatment or finding the
+            clinic, people should not have to search for
+            what to do next.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       CLOSING
+  ======================================================== -->
+
+  <footer class="closing">
+
+    <div class="closing-inner reveal">
+
+      <div class="eyebrow" style="justify-content: center; color: rgba(255,255,255,.42);">
+        A final thought
+      </div>
+
+      <h2 class="closing-title">
+        Healthcare is one of those spaces
+        where design can quietly make
+        someone feel a little
+        <em>less lost.</em>
+      </h2>
+
+
+      <div class="live-projects">
+
+        <a
+          href="https://www.drshachi.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="live-project-card"
+        >
+          <strong>
+            Dr. Shachi Singh
+          </strong>
+
+          <span>
+            Visit live website ↗
+          </span>
+        </a>
+
+
+        <a
+          href="https://www.drakashdubeyortho.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="live-project-card"
+        >
+          <strong>
+            Dr. Akash Dubey
+          </strong>
+
+          <span>
+            Visit live website ↗
+          </span>
+        </a>
+
+      </div>
+
+
+      <nav
+        class="closing-nav"
+        aria-label="Portfolio navigation"
+      >
+
+        <a
+          href="/#selected-work"
+          class="
+            closing-button
+            closing-button-primary
+          "
+        >
+          <span>←</span>
+          Back to Portfolio
+        </a>
+
+        <a
+          href="/#selected-work"
+          class="
+            closing-button
+            closing-button-secondary
+          "
+        >
+          View Other Works
+          <span>↗</span>
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <p class="signature">
+      by Manya Parwal
+    </p>
+
+  </footer>
+
+
+  <!-- =======================================================
+       REVEAL SCRIPT
+  ======================================================== -->
+
+  <script>
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const prefersReducedMotion =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+
+    if (prefersReducedMotion) {
+
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+
+    } else {
+
+      const revealObserver =
+        new IntersectionObserver(
+
+          (entries, observer) => {
+
+            entries.forEach((entry) => {
+
+              if (entry.isIntersecting) {
+
+                entry.target.classList.add(
+                  "is-visible"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            });
+
+          },
+
+          {
+            threshold: 0.08,
+            rootMargin:
+              "0px 0px -30px 0px"
+          }
+
+        );
+
+
+      revealElements.forEach((element) => {
+        revealObserver.observe(element);
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>

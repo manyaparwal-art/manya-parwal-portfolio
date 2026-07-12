@@ -1,0 +1,3485 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mamarise â€” Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    @media (max-width: 640px) {
+      :root {
+        --page-pad: 20px;
+      }
+
+      .hero-title {
+        font-size: clamp(44px, 11vw, 64px);
+        line-height: 0.9;
+      }
+
+      .hero-description {
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .hero-meta span {
+        font-size: 11px;
+        padding: 8px 12px;
+      }
+
+      .story-statement,
+      .roles-title,
+      .ecosystem-title,
+      .end-title {
+        font-size: clamp(34px, 8.2vw, 48px);
+        line-height: 0.95;
+      }
+
+      .story-question,
+      .story-foot,
+      .roles-copy,
+      .ecosystem-intro,
+      .end-copy,
+      .brand-copy p,
+      .process-copy p,
+      .showcase-panel h3,
+      .current-page-description,
+      .showcase-label {
+        font-size: 14px;
+        line-height: 1.65;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --plum: #502C62;
+      --plum-deep: #2F2B3A;
+      --sage: #7EBAA5;
+      --rose: #E8678A;
+      --peach: #F4A46A;
+      --cream: #FDF8F3;
+      --soft-mint: #F2F8F6;
+      --soft-grey: #F1F0F2;
+      --text: #2F2B3A;
+      --muted: #6E6A78;
+      --white: #FFFFFF;
+      --page-pad: clamp(24px, 5vw, 80px);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--cream);
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--cream);
+      color: var(--text);
+      font-family: "Outfit", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: var(--rose);
+      color: white;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      color: var(--plum);
+      font-family: "DM Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition:
+        opacity 0.9s cubic-bezier(.2, .7, .2, 1),
+        transform 0.9s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      overflow: hidden;
+      padding: 30px var(--page-pad) 42px;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(126, 186, 165, 0.17), transparent 31%),
+        radial-gradient(circle at 88% 14%, rgba(232, 103, 138, 0.12), transparent 29%),
+        var(--cream);
+    }
+
+    .hero-nav {
+      position: relative;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .back-arrow {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(47, 43, 58, 0.14);
+      border-radius: 50%;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .back-link:hover .back-arrow {
+      transform: translateX(-4px);
+      background: white;
+    }
+
+    .hero-index {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .hero-inner {
+      flex: 1;
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      align-items: center;
+      gap: clamp(32px, 5vw, 86px);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 10;
+      min-width: 0;
+      padding-top: 30px;
+    }
+
+    .hero-logo {
+      width: clamp(190px, 21vw, 310px);
+      max-height: 140px;
+      margin-bottom: 32px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .hero-title {
+      max-width: 700px;
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(58px, 6.7vw, 112px);
+      font-weight: 400;
+      line-height: 0.87;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-title em {
+      color: var(--plum);
+      font-weight: 400;
+    }
+
+    .hero-description {
+      max-width: 520px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: clamp(15px, 1.2vw, 19px);
+      line-height: 1.7;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .hero-meta span {
+      padding: 9px 13px;
+      border: 1px solid rgba(80, 44, 98, 0.15);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.48);
+      color: var(--plum);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      height: clamp(520px, 67vh, 690px);
+      min-width: 0;
+      isolation: isolate;
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 12% 1% 4% 0;
+      z-index: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 58% 42%, rgba(232, 103, 138, 0.17), transparent 54%),
+        radial-gradient(circle at 28% 72%, rgba(126, 186, 165, 0.18), transparent 52%);
+      filter: blur(38px);
+      pointer-events: none;
+    }
+
+    .browser-card {
+      position: absolute;
+      top: 20%;
+      left: 0;
+      z-index: 2;
+      width: 78%;
+      height: 64%;
+      overflow: hidden;
+      border: 1px solid rgba(80, 44, 98, 0.12);
+      border-radius: 22px;
+      background: white;
+      box-shadow:
+        0 35px 90px rgba(80, 44, 98, 0.14),
+        0 8px 30px rgba(47, 43, 58, 0.07);
+      transform: rotate(-2deg);
+      transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .browser-bar {
+      height: 32px;
+      padding: 0 13px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid rgba(47, 43, 58, 0.07);
+      background: rgba(253, 248, 243, 0.94);
+    }
+
+    .browser-bar i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(80, 44, 98, 0.25);
+    }
+
+    .browser-card img {
+      width: 100%;
+      height: calc(100% - 32px);
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .phone-card {
+      position: absolute;
+      top: 5%;
+      right: 1%;
+      z-index: 5;
+      width: clamp(155px, 13vw, 205px);
+      padding: 6px;
+      border-radius: 28px;
+      background: #17131A;
+      box-shadow:
+        0 30px 70px rgba(47, 43, 58, 0.22),
+        0 8px 25px rgba(80, 44, 98, 0.14);
+      transform: rotate(3deg);
+      transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .phone-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+    }
+
+    .floating-note {
+      position: absolute;
+      top: 33%;
+      right: 1%;
+      z-index: 8;
+      padding: 12px 17px;
+      border: 1px solid rgba(80, 44, 98, 0.12);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      color: var(--plum);
+      font-family: "Instrument Serif", serif;
+      font-size: 16px;
+      white-space: nowrap;
+      transform: rotate(2deg);
+    }
+
+
+    /* =========================================================
+       WHY MAMARISE
+    ========================================================= */
+
+    .story {
+      min-height: 100vh;
+      padding: clamp(100px, 13vw, 210px) var(--page-pad);
+      display: flex;
+      align-items: center;
+      background: var(--plum);
+      color: white;
+    }
+
+    .story-inner {
+      width: 100%;
+      max-width: 1450px;
+      margin: 0 auto;
+    }
+
+    .story .eyebrow {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .story-statement {
+      max-width: 1260px;
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(48px, 7vw, 110px);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    .story-statement .soft {
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .story-bottom {
+      margin-top: 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(40px, 8vw, 130px);
+      align-items: start;
+    }
+
+    .story-question {
+      max-width: 500px;
+      color: rgba(255, 255, 255, 0.92);
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(28px, 3vw, 48px);
+      line-height: 1.15;
+    }
+
+    .story-foot {
+      max-width: 560px;
+      margin-left: auto;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.75;
+    }
+
+
+    /* =========================================================
+       MANY ROLES
+    ========================================================= */
+
+    .roles {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      padding: clamp(110px, 12vw, 190px) var(--page-pad);
+      display: flex;
+      align-items: center;
+      background: var(--cream);
+    }
+
+    .roles-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .roles-title {
+      max-width: 1050px;
+      margin: 0 auto;
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(65px, 10vw, 155px);
+      font-weight: 400;
+      line-height: 0.82;
+      letter-spacing: -0.05em;
+    }
+
+    .roles-title em {
+      color: var(--rose);
+      font-weight: 400;
+    }
+
+    .roles-copy {
+      max-width: 530px;
+      margin: 45px auto 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.3vw, 19px);
+      line-height: 1.75;
+    }
+
+    .role-word {
+      position: absolute;
+      color: rgba(80, 44, 98, 0.12);
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(28px, 4vw, 70px);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .role-1 {
+      top: 17%;
+      left: 6%;
+      transform: rotate(-8deg);
+    }
+
+    .role-2 {
+      top: 21%;
+      right: 7%;
+      transform: rotate(7deg);
+    }
+
+    .role-3 {
+      bottom: 17%;
+      left: 9%;
+      transform: rotate(5deg);
+    }
+
+    .role-4 {
+      bottom: 13%;
+      right: 8%;
+      transform: rotate(-6deg);
+    }
+
+    .roles-thought {
+      width: fit-content;
+      max-width: 90%;
+      margin: 48px auto 0;
+      padding: 13px 19px;
+      border: 1px solid rgba(80, 44, 98, 0.13);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.58);
+      color: var(--plum);
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(16px, 1.5vw, 21px);
+      transform: rotate(-1deg);
+    }
+
+
+    /* =========================================================
+       WEBSITE AND APP ROLES
+    ========================================================= */
+
+    .ecosystem {
+      padding: clamp(100px, 12vw, 190px) var(--page-pad);
+      background: #F4F0F3;
+    }
+
+    .ecosystem-header {
+      max-width: 1450px;
+      margin: 0 auto 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .ecosystem-title {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(55px, 7vw, 105px);
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+    }
+
+    .ecosystem-intro {
+      max-width: 500px;
+      justify-self: end;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .experience-grid {
+      max-width: 1450px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .experience-card {
+      position: relative;
+      min-height: 720px;
+      overflow: hidden;
+      padding: clamp(30px, 4vw, 58px);
+      border-radius: 32px;
+    }
+
+    .experience-card.website {
+      background: white;
+    }
+
+    .experience-card.app {
+      background: var(--plum);
+      color: white;
+    }
+
+    .experience-number {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      opacity: 0.5;
+    }
+
+    .experience-card h3 {
+      margin-top: 22px;
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(48px, 5vw, 78px);
+      font-weight: 400;
+      line-height: 0.9;
+    }
+
+    .experience-card p {
+      max-width: 390px;
+      margin-top: 22px;
+      font-size: 15px;
+      line-height: 1.7;
+      opacity: 0.68;
+    }
+
+    .website-preview {
+      position: absolute;
+      left: 8%;
+      bottom: -18%;
+      width: 84%;
+      height: 64%;
+      overflow: hidden;
+      border-radius: 18px 18px 0 0;
+      background: white;
+      box-shadow: 0 20px 60px rgba(47, 43, 58, 0.12);
+      transform: rotate(-2deg);
+    }
+
+    .website-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .app-preview-stack {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8%;
+      height: 61%;
+    }
+
+    .app-preview-stack img {
+      position: absolute;
+      width: clamp(145px, 16vw, 230px);
+      border-radius: 22px;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.25);
+    }
+
+    .app-preview-stack img:nth-child(1) {
+      left: 10%;
+      top: 13%;
+      transform: rotate(-9deg);
+    }
+
+    .app-preview-stack img:nth-child(2) {
+      left: 36%;
+      top: 0;
+      z-index: 2;
+    }
+
+    .app-preview-stack img:nth-child(3) {
+      right: 8%;
+      top: 17%;
+      transform: rotate(9deg);
+    }
+
+    .ecosystem-line {
+      max-width: 1450px;
+      margin: 55px auto 0;
+      text-align: center;
+      color: var(--plum);
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(28px, 3vw, 48px);
+    }
+
+
+    /* =========================================================
+       LOGO STORY
+    ========================================================= */
+
+    .brand-intro {
+      min-height: 100vh;
+      padding: clamp(100px, 12vw, 190px) var(--page-pad);
+      display: flex;
+      align-items: center;
+      background: var(--cream);
+    }
+
+    .brand-grid {
+      width: 100%;
+      max-width: 1450px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(50px, 8vw, 140px);
+      align-items: center;
+    }
+
+    .brand-copy h2 {
+      max-width: 650px;
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(60px, 7vw, 110px);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-copy h2 em {
+      color: var(--rose);
+      font-weight: 400;
+    }
+
+    .brand-copy p {
+      max-width: 500px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .brand-copy p + p {
+      margin-top: 16px;
+    }
+
+    .logo-stage {
+      position: relative;
+      min-height: 650px;
+      display: grid;
+      place-items: center;
+    }
+
+    .logo-orbit {
+      position: absolute;
+      width: min(90%, 610px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(80, 44, 98, 0.12);
+      border-radius: 50%;
+    }
+
+    .logo-orbit::before {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border: 1px dashed rgba(232, 103, 138, 0.2);
+      border-radius: 50%;
+    }
+
+    .logo-main {
+      position: relative;
+      z-index: 2;
+      width: min(72%, 460px);
+      max-height: 300px;
+      object-fit: contain;
+    }
+
+    .meaning {
+      position: absolute;
+      z-index: 3;
+      padding: 12px 16px;
+      border: 1px solid rgba(80, 44, 98, 0.1);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(10px);
+      color: var(--plum);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .meaning-1 {
+      top: 12%;
+      left: 3%;
+    }
+
+    .meaning-2 {
+      top: 18%;
+      right: 0;
+    }
+
+    .meaning-3 {
+      bottom: 17%;
+      left: 0;
+    }
+
+    .meaning-4 {
+      bottom: 11%;
+      right: 5%;
+    }
+
+
+    /* =========================================================
+       STYLE GUIDE
+    ========================================================= */
+
+    .style-guide {
+      padding: clamp(100px, 11vw, 170px) var(--page-pad);
+      background: #F4F0F3;
+    }
+
+    .style-guide-inner {
+      max-width: 1450px;
+      margin: 0 auto;
+    }
+
+    .style-guide-heading {
+      max-width: 950px;
+      margin-bottom: clamp(60px, 7vw, 100px);
+    }
+
+    .style-guide-heading h2 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(60px, 8vw, 120px);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+    }
+
+    .style-guide-heading h2 em {
+      color: var(--rose);
+      font-weight: 400;
+    }
+
+    .style-guide-heading > p {
+      max-width: 580px;
+      margin-top: 32px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .style-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .style-panel {
+      padding: clamp(30px, 4vw, 55px);
+      border-radius: 32px;
+    }
+
+    .colour-panel {
+      background: var(--plum);
+      color: white;
+    }
+
+    .type-panel {
+      background: var(--cream);
+      border: 1px solid rgba(80, 44, 98, 0.08);
+    }
+
+    .panel-number {
+      margin-bottom: 32px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      opacity: 0.55;
+    }
+
+    .style-panel h3 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(42px, 4vw, 65px);
+      font-weight: 400;
+      line-height: 0.95;
+    }
+
+    .panel-copy {
+      max-width: 530px;
+      margin-top: 25px;
+      font-size: 15px;
+      line-height: 1.7;
+      opacity: 0.68;
+    }
+
+    .compact-palette {
+      height: 360px;
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .compact-swatch {
+      padding: 18px;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .compact-plum {
+      grid-row: 1 / 4;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #502C62;
+      color: white;
+    }
+
+    .compact-sage {
+      background: #7EBAA5;
+      color: #24463D;
+    }
+
+    .compact-rose {
+      background: #E8678A;
+      color: white;
+    }
+
+    .compact-peach {
+      background: #F4A46A;
+      color: #5C351E;
+    }
+
+    .compact-swatch-name {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(21px, 2vw, 32px);
+    }
+
+    .compact-swatch-code {
+      font-family: "DM Sans", sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+    }
+
+    .type-card {
+      min-height: 360px;
+      margin-top: 55px;
+      padding: clamp(24px, 3vw, 38px);
+      border: 1px solid rgba(80, 44, 98, 0.1);
+      border-radius: 22px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .type-card-top {
+      display: flex;
+      align-items: flex-end;
+      gap: 24px;
+    }
+
+    .big-aa {
+      color: var(--plum);
+      font-size: clamp(80px, 8vw, 125px);
+      font-weight: 500;
+      line-height: 0.75;
+      letter-spacing: -0.08em;
+    }
+
+    .font-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .font-info strong {
+      font-size: 20px;
+    }
+
+    .font-info span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .type-sample {
+      color: var(--plum);
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .type-alphabet {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+      letter-spacing: 0.08em;
+      overflow-wrap: anywhere;
+    }
+
+
+    /* =========================================================
+       PRODUCT TRANSITION
+    ========================================================= */
+
+    .product-transition {
+      position: relative;
+      min-height: auto;
+      overflow: hidden;
+      padding: clamp(75px, 8vw, 125px) var(--page-pad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--plum);
+      color: white;
+      text-align: center;
+    }
+
+    .transition-glow {
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: rgba(232, 103, 138, 0.2);
+      filter: blur(100px);
+    }
+
+    .transition-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+    }
+
+    .transition-content .eyebrow {
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .transition-content h2 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(65px, 10vw, 155px);
+      font-weight: 400;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+    }
+
+    .transition-content h2 em {
+      color: var(--sage);
+      font-weight: 400;
+    }
+
+    .transition-content p {
+      max-width: 550px;
+      margin: 40px auto 0;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       INTERACTIVE PRODUCT SHOWCASE
+    ========================================================= */
+
+    .product-showcase {
+      position: relative;
+      padding: clamp(100px, 12vw, 190px) var(--page-pad);
+      background:
+        radial-gradient(circle at 12% 20%, rgba(126, 186, 165, 0.13), transparent 28%),
+        radial-gradient(circle at 90% 80%, rgba(232, 103, 138, 0.11), transparent 30%),
+        var(--cream);
+    }
+
+    .showcase-inner {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .showcase-header {
+      max-width: 1050px;
+      margin-bottom: 80px;
+    }
+
+    .showcase-header h2 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(60px, 8vw, 120px);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+    }
+
+    .showcase-header h2 em {
+      color: var(--rose);
+      font-weight: 400;
+    }
+
+    .showcase-header p {
+      max-width: 620px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.55fr);
+      gap: clamp(25px, 4vw, 55px);
+      align-items: stretch;
+    }
+
+    .showcase-panel {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      border-radius: 36px;
+    }
+
+    .website-showcase {
+      padding: clamp(28px, 4vw, 55px);
+      background: #F0E8EF;
+    }
+
+    .app-showcase {
+      padding: clamp(28px, 3vw, 42px);
+      background: var(--plum);
+      color: white;
+    }
+
+    .showcase-panel-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .showcase-label {
+      display: block;
+      margin-bottom: 10px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      opacity: 0.55;
+    }
+
+    .showcase-panel h3 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(38px, 4vw, 60px);
+      font-weight: 400;
+      line-height: 0.95;
+    }
+
+    .page-counter {
+      flex-shrink: 0;
+      padding: 9px 13px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--plum);
+      font-size: 11px;
+    }
+
+    .app-showcase .page-counter {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+
+    /* LAPTOP */
+
+    .laptop-wrap {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .laptop-screen {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      padding: 10px 10px 0;
+      border-radius: 22px 22px 8px 8px;
+      background: #26232A;
+      box-shadow: 0 35px 80px rgba(80, 44, 98, 0.18);
+    }
+
+    .laptop-camera {
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      z-index: 4;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #0F0E11;
+      transform: translateX(-50%);
+    }
+
+    .laptop-browser {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 14px 14px 3px 3px;
+      background: white;
+    }
+
+    .laptop-browser-bar {
+      height: 34px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid rgba(47, 43, 58, 0.08);
+      background: #FAF7F5;
+    }
+
+    .laptop-browser-bar i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(80, 44, 98, 0.25);
+    }
+
+    .laptop-url {
+      max-width: 220px;
+      margin-left: 10px;
+      padding: 5px 12px;
+      overflow: hidden;
+      border-radius: 100px;
+      background: white;
+      color: var(--muted);
+      font-size: 9px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .website-scroll-window {
+      position: relative;
+      height: calc(100% - 34px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: white;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(80, 44, 98, 0.3) transparent;
+      overscroll-behavior: contain;
+    }
+
+    .website-scroll-window::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .website-scroll-window::-webkit-scrollbar-thumb {
+      border-radius: 20px;
+      background: rgba(80, 44, 98, 0.28);
+    }
+
+    .website-scroll-window img {
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: opacity 0.25s ease;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      z-index: 6;
+      padding: 8px 12px;
+      border: 1px solid rgba(80, 44, 98, 0.1);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      color: var(--plum);
+      font-size: 10px;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .laptop-base {
+      position: relative;
+      width: 108%;
+      height: 18px;
+      margin-left: -4%;
+      border-radius: 2px 2px 18px 18px;
+      background: linear-gradient(to bottom, #D9D6DA, #A9A6AB);
+      box-shadow: 0 12px 20px rgba(47, 43, 58, 0.13);
+    }
+
+    .laptop-base::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 80px;
+      height: 5px;
+      border-radius: 0 0 8px 8px;
+      background: #BBB8BD;
+      transform: translateX(-50%);
+    }
+
+
+    /* PHONE */
+
+    .phone-stage {
+      min-height: 590px;
+      display: grid;
+      place-items: center;
+    }
+
+    .interactive-phone {
+      position: relative;
+      width: min(78%, 260px);
+      padding: 8px;
+      border-radius: 38px;
+      background: #17131A;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .interactive-phone::before {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      z-index: 4;
+      width: 32%;
+      height: 18px;
+      border-radius: 100px;
+      background: #17131A;
+      transform: translateX(-50%);
+    }
+
+    .interactive-phone-screen {
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+      aspect-ratio: 9 / 19.5;
+      border-radius: 31px;
+      background: white;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(80, 44, 98, 0.3) transparent;
+    }
+
+    .interactive-phone-screen::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .interactive-phone-screen::-webkit-scrollbar-thumb {
+      border-radius: 20px;
+      background: rgba(80, 44, 98, 0.28);
+    }
+
+    .interactive-phone-screen img {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: opacity 0.25s ease;
+    }
+
+    .interactive-phone-screen.is-static {
+      overflow: hidden;
+    }
+
+    .interactive-phone-screen.is-static img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      object-position: top;
+    }
+
+
+    /* CONTROLS */
+
+    .showcase-controls {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .control-arrows {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-arrow {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(80, 44, 98, 0.13);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--plum);
+      cursor: pointer;
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .nav-arrow:hover {
+      transform: scale(1.06);
+      background: white;
+    }
+
+    .app-showcase .nav-arrow {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+    }
+
+    .app-showcase .nav-arrow:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .current-page-info {
+      min-width: 0;
+      text-align: right;
+    }
+
+    .current-page-name {
+      display: block;
+      font-family: "Instrument Serif", serif;
+      font-size: 23px;
+    }
+
+    .current-page-description {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .app-showcase .current-page-description {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .page-dots {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .page-dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(80, 44, 98, 0.18);
+      cursor: pointer;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    .page-dot.active {
+      width: 25px;
+      border-radius: 100px;
+      background: var(--plum);
+    }
+
+    .app-showcase .page-dot {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .app-showcase .page-dot.active {
+      background: var(--rose);
+    }
+
+
+
+    /* =========================================================
+       STICKY PORTFOLIO NAV
+    ========================================================= */
+
+    .sticky-back {
+      position: fixed;
+      top: 22px;
+      left: 22px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 15px 8px 8px;
+      border: 1px solid rgba(80, 44, 98, 0.14);
+      border-radius: 100px;
+      background: rgba(253, 248, 243, 0.84);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 30px rgba(47, 43, 58, 0.07);
+      color: #2F2B3A;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+
+    .sticky-back:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 12px 35px rgba(47, 43, 58, 0.11);
+    }
+
+    .sticky-back-arrow {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(80, 44, 98, 0.08);
+      color: #502C62;
+      transition: transform .25s ease;
+    }
+
+    .sticky-back:hover .sticky-back-arrow {
+      transform: translateX(-3px);
+    }
+
+    /* =========================================================
+       FINAL CASE STUDY END
+    ========================================================= */
+
+    .case-study-end {
+      position: relative;
+      min-height: 78vh;
+      overflow: hidden;
+      padding: clamp(100px, 12vw, 180px) var(--page-pad) 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #2F1839;
+      color: white;
+    }
+
+    .end-glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(100px);
+    }
+
+    .end-glow-one {
+      top: -20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: rgba(126, 186, 165, 0.15);
+    }
+
+    .end-glow-two {
+      right: -10%;
+      bottom: -20%;
+      width: 550px;
+      height: 550px;
+      background: rgba(232, 103, 138, 0.16);
+    }
+
+    .end-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1250px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .end-eyebrow {
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.48);
+    }
+
+    .end-title {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(62px, 9vw, 140px);
+      font-weight: 400;
+      line-height: 0.84;
+      letter-spacing: -0.055em;
+    }
+
+    .end-title em {
+      color: var(--sage);
+      font-weight: 400;
+    }
+
+    .end-copy {
+      max-width: 590px;
+      margin: clamp(35px, 4vw, 55px) auto 0;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.75;
+    }
+
+    .end-actions {
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .end-link {
+      min-width: 175px;
+      padding: 15px 21px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .end-link:hover { transform: translateY(-3px); }
+
+    .end-link-primary {
+      background: white;
+      color: var(--plum);
+    }
+
+    .end-link-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+    }
+
+    .end-link-secondary:hover {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .end-signature {
+      position: relative;
+      z-index: 2;
+      margin-top: 100px;
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (min-width: 1001px) and (max-width: 1300px) {
+
+      .hero-inner {
+        grid-template-columns: 0.88fr 1.12fr;
+        gap: 26px;
+      }
+
+      .hero-title {
+        font-size: clamp(62px, 6.3vw, 82px);
+      }
+
+      .hero-visual {
+        height: 590px;
+      }
+
+      .browser-card {
+        top: 23%;
+        width: 79%;
+        height: 58%;
+      }
+
+      .phone-card {
+        top: 7%;
+        width: 165px;
+      }
+
+      .showcase-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      }
+
+      .phone-stage {
+        min-height: 520px;
+      }
+    }
+
+
+    @media (max-width: 1000px) {
+
+      .hero {
+        min-height: auto;
+        padding-bottom: 90px;
+      }
+
+      .hero-inner {
+        display: block;
+        padding-top: 80px;
+      }
+
+      .hero-visual {
+        width: min(100%, 780px);
+        height: 620px;
+        margin: 55px auto 0;
+      }
+
+      .ecosystem-header,
+      .brand-grid,
+      .style-guide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ecosystem-intro {
+        justify-self: start;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-bottom {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .story-foot {
+        margin-left: 0;
+      }
+
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .app-showcase {
+        min-height: auto;
+      }
+
+      .phone-stage {
+        min-height: 580px;
+      }
+    }
+
+
+    @media (max-width: 700px) {
+
+      .sticky-back {
+        top: 14px;
+        left: 14px;
+        padding: 6px 12px 6px 6px;
+        font-size: 11px;
+      }
+
+      .sticky-back-arrow {
+        width: 28px;
+        height: 28px;
+      }
+
+      .case-study-end {
+        min-height: 75vh;
+        padding: 100px var(--page-pad) 25px;
+      }
+
+      .end-title {
+        font-size: clamp(58px, 17vw, 78px);
+      }
+
+      .end-actions {
+        flex-direction: column;
+      }
+
+      .end-link {
+        width: min(100%, 280px);
+      }
+
+      .end-signature {
+        margin-top: 80px;
+      }
+
+      :root {
+        --page-pad: 20px;
+      }
+
+      .hero {
+        padding: 18px var(--page-pad) 70px;
+      }
+
+      .hero-index {
+        display: none;
+      }
+
+      .hero-inner {
+        padding-top: 65px;
+      }
+
+      .hero-logo {
+        width: 180px;
+        margin-bottom: 25px;
+      }
+
+      .hero-title {
+        font-size: clamp(58px, 18vw, 82px);
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-visual {
+        height: 470px;
+        margin-top: 40px;
+      }
+
+      .browser-card {
+        top: 16%;
+        left: -2%;
+        width: 88%;
+        height: 62%;
+      }
+
+      .phone-card {
+        top: 5%;
+        right: -1%;
+        width: clamp(118px, 33vw, 145px);
+      }
+
+      .floating-note {
+        display: none;
+      }
+
+      .story,
+      .roles {
+        min-height: auto;
+        padding-top: 110px;
+        padding-bottom: 110px;
+      }
+
+      .story-bottom {
+        margin-top: 55px;
+        gap: 35px;
+      }
+
+      .story-question {
+        font-size: 30px;
+      }
+
+      .roles-title {
+        font-size: clamp(62px, 19vw, 86px);
+      }
+
+      .roles-thought {
+        text-align: center;
+      }
+
+      .ecosystem-header {
+        margin-bottom: 45px;
+      }
+
+      .ecosystem-intro {
+        font-size: 15px;
+      }
+
+      .experience-card {
+        min-height: 600px;
+        border-radius: 24px;
+      }
+
+      .app-preview-stack img {
+        width: 135px;
+      }
+
+      .brand-grid {
+        gap: 30px;
+      }
+
+      .brand-copy h2 {
+        font-size: clamp(58px, 17vw, 80px);
+      }
+
+      .brand-copy p {
+        font-size: 15px;
+      }
+
+      .logo-stage {
+        min-height: 500px;
+      }
+
+      .meaning {
+        padding: 9px 11px;
+        font-size: 9px;
+      }
+
+      .style-guide-heading h2 {
+        font-size: clamp(58px, 17vw, 80px);
+      }
+
+      .style-panel {
+        padding: 28px 22px;
+        border-radius: 24px;
+      }
+
+      .style-panel h3 {
+        font-size: 43px;
+      }
+
+      .compact-palette {
+        height: auto;
+        margin-top: 40px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 145px 145px;
+      }
+
+      .compact-plum {
+        grid-column: 1 / 3;
+        grid-row: auto;
+      }
+
+      .type-card {
+        min-height: 380px;
+        margin-top: 40px;
+      }
+
+      .product-transition {
+        min-height: auto;
+        padding: 75px var(--page-pad);
+      }
+
+      .transition-content h2 {
+        font-size: clamp(62px, 18vw, 82px);
+      }
+
+      .product-showcase {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+
+      .showcase-header {
+        margin-bottom: 50px;
+      }
+
+      .showcase-header h2 {
+        font-size: clamp(58px, 17vw, 80px);
+      }
+
+      .showcase-header p {
+        font-size: 15px;
+      }
+
+      .showcase-panel {
+        border-radius: 24px;
+      }
+
+      .website-showcase,
+      .app-showcase {
+        padding: 24px 16px;
+      }
+
+      .showcase-panel-top {
+        margin-bottom: 25px;
+      }
+
+      .showcase-panel h3 {
+        font-size: 40px;
+      }
+
+      .laptop-screen {
+        padding: 6px 6px 0;
+        border-radius: 13px 13px 5px 5px;
+      }
+
+      .laptop-browser {
+        border-radius: 9px 9px 2px 2px;
+      }
+
+      .laptop-browser-bar {
+        height: 25px;
+        padding: 0 7px;
+      }
+
+      .laptop-browser-bar i {
+        width: 4px;
+        height: 4px;
+      }
+
+      .laptop-url {
+        max-width: 130px;
+        padding: 3px 8px;
+        font-size: 7px;
+      }
+
+      .website-scroll-window {
+        height: calc(100% - 25px);
+      }
+
+      .scroll-hint {
+        right: 8px;
+        bottom: 8px;
+        padding: 6px 8px;
+        font-size: 8px;
+      }
+
+      .laptop-base {
+        height: 11px;
+      }
+
+      .phone-stage {
+        min-height: 510px;
+      }
+
+      .interactive-phone {
+        width: min(72%, 230px);
+      }
+
+      .showcase-controls {
+        align-items: flex-start;
+      }
+
+      .nav-arrow {
+        width: 42px;
+        height: 42px;
+      }
+
+      .current-page-name {
+        font-size: 20px;
+      }
+
+      .current-page-description {
+        max-width: 150px;
+      }
+    }
+
+
+    @media (max-width: 390px) {
+
+      .hero-visual {
+        height: 420px;
+      }
+
+      .browser-card {
+        top: 18%;
+        width: 90%;
+        height: 58%;
+      }
+
+      .phone-card {
+        width: 116px;
+      }
+
+      .showcase-controls {
+        flex-direction: column;
+      }
+
+      .current-page-info {
+        text-align: left;
+      }
+
+      .phone-stage {
+        min-height: 470px;
+      }
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+<script src="/case-study-cursor.js"></script>
+  <a href="/#selected-work" class="sticky-back">
+    <span class="sticky-back-arrow">←</span>
+    <span>Back to Portfolio</span>
+  </a>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <nav class="hero-nav">
+
+      <a href="/#selected-work" class="back-link">
+        <span class="back-arrow">←</span>
+        <span>Back to Project M</span>
+      </a>
+
+      <span class="hero-index">
+        Selected Work Â· 02
+      </span>
+
+    </nav>
+
+
+    <div class="hero-inner">
+
+      <div class="hero-copy">
+
+        <div class="eyebrow">
+          Product Design Â· Brand Identity
+        </div>
+
+        <img
+          src="/mamarise/mamarise-logo.svg"
+          alt="Mamarise"
+          class="hero-logo"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <h1 class="hero-title">
+          A space to
+          <em>rise</em>
+          together.
+        </h1>
+
+        <p class="hero-description">
+          A digital wellness ecosystem designed around the many roles women
+          carry, bringing parenting, career, wellbeing, expert guidance and
+          community into one thoughtful experience.
+        </p>
+
+        <div class="hero-meta">
+          <span>Website</span>
+          <span>Mobile App</span>
+          <span>UI/UX Design</span>
+          <span>Brand Identity</span>
+        </div>
+
+      </div>
+
+
+      <div class="hero-visual">
+
+        <div class="hero-glow"></div>
+
+        <div class="browser-card">
+
+          <div class="browser-bar">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <img
+            src="/mamarise/home-page.png"
+            alt="Mamarise website"
+            loading="lazy"
+            decoding="async"
+          />
+
+        </div>
+
+        <div class="phone-card">
+          <img
+            src="/mamarise/app-home.png"
+            alt="Mamarise mobile app"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="floating-note">
+          one ecosystem, many moments â™¡
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WHY MAMARISE -->
+
+  <section class="story">
+
+    <div class="story-inner">
+
+      <div class="eyebrow reveal">
+        Why Mamarise exists
+      </div>
+
+      <h2 class="story-statement reveal">
+        Women don't live
+        <span class="soft">
+          one life at a time.
+        </span>
+      </h2>
+
+      <div class="story-bottom reveal">
+
+        <p class="story-question">
+          Parenting over here. Career somewhere else.
+          Wellness in another tab. Community, if she can find one.
+        </p>
+
+        <p class="story-foot">
+          A woman can be a mother, a professional, a partner,
+          a caregiver, and still an individual with her own goals,
+          questions and need for support. But most digital experiences
+          treat every part of that life as a completely separate problem.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MANY ROLES -->
+
+  <section class="roles">
+
+    <span class="role-word role-1">mother</span>
+    <span class="role-word role-2">professional</span>
+    <span class="role-word role-3">individual</span>
+    <span class="role-word role-4">still becoming</span>
+
+    <div class="roles-inner">
+
+      <div
+        class="eyebrow reveal"
+        style="justify-content: center;"
+      >
+        The thought behind it
+      </div>
+
+      <h2 class="roles-title reveal">
+        One woman.
+        <br>
+        <em>Many roles.</em>
+      </h2>
+
+      <p class="roles-copy reveal">
+        I kept coming back to one simple thought. Why should every part
+        of her life live in a different place? Mamarise became my answer
+        to that, one space where she can find support for what matters
+        to her right now.
+      </p>
+
+      <div class="roles-thought reveal">
+        What if all these parts could belong in one place?
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WEBSITE AND APP ROLES -->
+
+  <section class="ecosystem">
+
+    <div class="ecosystem-header reveal">
+
+      <h2 class="ecosystem-title">
+        One idea.
+        <br>
+        Two different experiences.
+      </h2>
+
+      <p class="ecosystem-intro">
+        I didn't want the website and app to simply repeat each other.
+        They had different jobs to do, so I designed them around
+        different moments in the user's journey.
+      </p>
+
+    </div>
+
+
+    <div class="experience-grid">
+
+      <article class="experience-card website reveal">
+
+        <span class="experience-number">
+          01 Â· THE WEBSITE
+        </span>
+
+        <h3>
+          Discover.
+          <br>
+          Understand.
+          <br>
+          Trust.
+        </h3>
+
+        <p>
+          The website is where someone first meets Mamarise.
+          It helps her understand what the platform offers,
+          explore the different spaces and decide if this
+          feels like something made for her.
+        </p>
+
+        <div class="website-preview">
+          <img
+            src="/mamarise/wellness-page.png"
+            alt="Mamarise wellness website"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+      </article>
+
+
+      <article class="experience-card app reveal">
+
+        <span class="experience-number">
+          02 Â· THE APP
+        </span>
+
+        <h3>
+          Return.
+          <br>
+          Act.
+          <br>
+          Grow.
+        </h3>
+
+        <p>
+          The app is more personal. It is where Mamarise becomes
+          part of everyday life, with sessions, guidance and content
+          shaped around what she actually needs at that moment.
+        </p>
+
+        <div class="app-preview-stack">
+
+          <img
+            src="/mamarise/app-splash.png"
+            alt="Mamarise app onboarding"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <img
+            src="/mamarise/app-home.png"
+            alt="Mamarise app home"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <img
+            src="/mamarise/app-today-session.png"
+            alt="Mamarise daily session"
+            loading="lazy"
+            decoding="async"
+          />
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <p class="ecosystem-line reveal">
+      The website helps her discover Mamarise.
+      The app gives her a reason to come back.
+    </p>
+
+  </section>
+
+
+  <!-- LOGO STORY -->
+
+  <section class="brand-intro">
+
+    <div class="brand-grid">
+
+      <div class="brand-copy reveal">
+
+        <div class="eyebrow">
+          Giving Mamarise a face
+        </div>
+
+        <h2>
+          I wanted the logo to feel like a small moment of
+          <em>being held.</em>
+        </h2>
+
+        <p>
+          When I started working on the identity, I knew I didn't
+          want something that felt too clinical or like another
+          generic wellness brand.
+        </p>
+
+        <p>
+          Mamarise is about women, motherhood, growth and having
+          support around you, so the logo had to carry some of
+          that feeling too.
+        </p>
+
+        <p>
+          The mother and child became the heart of the mark.
+          The circle around them brings in protection, while the
+          leaves represent growth and new beginnings. Nothing too
+          complicated. Just the things Mamarise is really built around.
+        </p>
+
+      </div>
+
+
+      <div class="logo-stage reveal">
+
+        <div class="logo-orbit"></div>
+
+        <img
+          src="/mamarise/mamarise-logo.svg"
+          alt="Mamarise logo"
+          class="logo-main"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <span class="meaning meaning-1">
+          Love & Togetherness
+        </span>
+
+        <span class="meaning meaning-2">
+          Growth & Wellbeing
+        </span>
+
+        <span class="meaning meaning-3">
+          Care & Nurture
+        </span>
+
+        <span class="meaning meaning-4">
+          Protection & Support
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- STYLE GUIDE -->
+
+  <section class="style-guide">
+
+    <div class="style-guide-inner">
+
+      <div class="style-guide-heading reveal">
+
+        <div class="eyebrow">
+          Building the visual language
+        </div>
+
+        <h2>
+          Making it feel like
+          <em>Mamarise.</em>
+        </h2>
+
+        <p>
+          Once the logo started feeling right, everything else had
+          to follow the same feeling. Warm, calm and reassuring,
+          but never too soft or predictable.
+        </p>
+
+      </div>
+
+
+      <div class="style-guide-grid">
+
+        <article class="style-panel colour-panel reveal">
+
+          <div class="panel-number">
+            01 Â· COLOUR
+          </div>
+
+          <h3>
+            Warmth, without making everything pink.
+          </h3>
+
+          <p class="panel-copy">
+            I went with deep plum instead of the usual bright pink
+            because I wanted Mamarise to feel warm, but still grounded
+            and confident. Sage brings in a little calm, while rose and
+            peach add warmth without taking over the whole identity.
+          </p>
+
+          <div class="compact-palette">
+
+            <div class="compact-swatch compact-plum">
+              <span class="compact-swatch-name">Deep Plum</span>
+              <span class="compact-swatch-code">#502C62</span>
+            </div>
+
+            <div class="compact-swatch compact-sage">
+              <span class="compact-swatch-name">Sage</span>
+              <span class="compact-swatch-code">#7EBAA5</span>
+            </div>
+
+            <div class="compact-swatch compact-rose">
+              <span class="compact-swatch-name">Rose</span>
+              <span class="compact-swatch-code">#E8678A</span>
+            </div>
+
+            <div class="compact-swatch compact-peach">
+              <span class="compact-swatch-name">Peach</span>
+              <span class="compact-swatch-code">#F4A46A</span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article class="style-panel type-panel reveal">
+
+          <div class="panel-number">
+            02 Â· TYPOGRAPHY
+          </div>
+
+          <h3>
+            Clean, but never cold.
+          </h3>
+
+          <p class="panel-copy">
+            For type, I chose Outfit because it feels clean without
+            feeling cold. It works just as well for softer brand moments
+            as it does for practical product screens, which mattered
+            because Mamarise had to work across both a website and an app.
+          </p>
+
+          <div class="type-card">
+
+            <div class="type-card-top">
+
+              <span class="big-aa">
+                Aa
+              </span>
+
+              <div class="font-info">
+                <strong>Outfit</strong>
+                <span>Regular Â· Medium Â· Semibold Â· Bold</span>
+              </div>
+
+            </div>
+
+            <div class="type-sample">
+              Rise together.
+            </div>
+
+            <div class="type-alphabet">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ
+              <br>
+              abcdefghijklmnopqrstuvwxyz
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCT TRANSITION -->
+
+  <section class="product-transition">
+
+    <div class="transition-glow"></div>
+
+    <div class="transition-content reveal">
+
+      <div class="eyebrow">
+        From identity to experience
+      </div>
+
+      <h2>
+        The identity was ready.
+        <br>
+        Now it had to
+        <em>work.</em>
+      </h2>
+
+      <p>
+        The next challenge was turning the idea into something
+        people could actually explore and return to. This is where
+        the website and app started taking on their own roles.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTERACTIVE PRODUCT SHOWCASE -->
+
+  <section class="product-showcase">
+
+    <div class="showcase-inner">
+
+      <div class="showcase-header reveal">
+
+        <div class="eyebrow">
+          Explore the experience
+        </div>
+
+        <h2>
+          Don't just look at it.
+          <br>
+          <em>Move through it.</em>
+        </h2>
+
+        <p>
+          I wanted this part of the case study to feel closer to actually
+          using Mamarise. You can move between the website pages, scroll
+          through them inside the laptop, and explore the app screens
+          alongside them.
+        </p>
+
+      </div>
+
+
+      <div class="showcase-grid">
+
+
+        <!-- WEBSITE SHOWCASE -->
+
+        <article class="showcase-panel website-showcase reveal">
+
+          <div class="showcase-panel-top">
+
+            <div>
+              <span class="showcase-label">
+                THE WEBSITE
+              </span>
+
+              <h3>
+                Explore the wider world.
+              </h3>
+            </div>
+
+            <span
+              class="page-counter"
+              id="websiteCounter"
+            >
+              01 / 06
+            </span>
+
+          </div>
+
+
+          <div class="laptop-wrap">
+
+            <div class="laptop-screen">
+
+              <div class="laptop-camera"></div>
+
+              <div class="laptop-browser">
+
+                <div class="laptop-browser-bar">
+
+                  <i></i>
+                  <i></i>
+                  <i></i>
+
+                  <span
+                    class="laptop-url"
+                    id="websiteUrl"
+                  >
+                    mamarise.com
+                  </span>
+
+                </div>
+
+
+                <div
+                  class="website-scroll-window"
+                  id="websiteScrollWindow"
+                >
+
+                  <img
+                    id="websiteImage"
+                    src="/mamarise/home-page.png"
+                    alt="Mamarise website page"
+                  > loading="lazy" decoding="async"
+
+                  <span
+                    class="scroll-hint"
+                    id="scrollHint"
+                  >
+                    scroll inside ⌄
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="laptop-base"></div>
+
+          </div>
+
+
+          <div class="showcase-controls">
+
+            <div class="control-arrows">
+
+              <button
+                class="nav-arrow"
+                id="websitePrev"
+                aria-label="Previous website page"
+              >
+                ←
+              </button>
+
+              <button
+                class="nav-arrow"
+                id="websiteNext"
+                aria-label="Next website page"
+              >
+                →
+              </button>
+
+            </div>
+
+
+            <div class="current-page-info">
+
+              <strong
+                class="current-page-name"
+                id="websitePageName"
+              >
+                Home
+              </strong>
+
+              <span
+                class="current-page-description"
+                id="websitePageDescription"
+              >
+                The first introduction to Mamarise
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="page-dots"
+            id="websiteDots"
+          ></div>
+
+        </article>
+
+
+        <!-- APP SHOWCASE -->
+
+        <article class="showcase-panel app-showcase reveal">
+
+          <div class="showcase-panel-top">
+
+            <div>
+
+              <span class="showcase-label">
+                THE APP
+              </span>
+
+              <h3>
+                Come back to what matters today.
+              </h3>
+
+            </div>
+
+            <span
+              class="page-counter"
+              id="appCounter"
+            >
+              01 / 03
+            </span>
+
+          </div>
+
+
+          <div class="phone-stage">
+
+            <div class="interactive-phone">
+
+              <div class="interactive-phone-screen is-static" id="appScrollWindow">
+
+                <img
+                  id="appImage"
+                  src="/mamarise/app-onboarding-1.png"
+                  alt="Mamarise app screen"
+                > loading="lazy" decoding="async"
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="showcase-controls">
+
+            <div class="control-arrows">
+
+              <button
+                class="nav-arrow"
+                id="appPrev"
+                aria-label="Previous app screen"
+              >
+                ←
+              </button>
+
+              <button
+                class="nav-arrow"
+                id="appNext"
+                aria-label="Next app screen"
+              >
+                →
+              </button>
+
+            </div>
+
+
+            <div class="current-page-info">
+
+              <strong
+                class="current-page-name"
+                id="appPageName"
+              >
+                Welcome
+              </strong>
+
+              <span
+                class="current-page-description"
+                id="appPageDescription"
+              >
+                A softer first step into Mamarise
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="page-dots"
+            id="appDots"
+          ></div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- CASE STUDY END -->
+
+  <section class="case-study-end">
+
+    <div class="end-glow end-glow-one"></div>
+    <div class="end-glow end-glow-two"></div>
+
+    <div class="end-inner reveal">
+
+      <div class="eyebrow end-eyebrow">
+        That's Mamarise, for now
+      </div>
+
+      <h2 class="end-title">
+        Still growing.
+        <br>
+        Just like the women
+        <em>it was made for.</em>
+      </h2>
+
+      <p class="end-copy">
+        Mamarise is still evolving, and so is the app.
+        I am continuing to build more of the experience alongside
+        this case study, one screen and one thoughtful decision at a time.
+      </p>
+
+      <div class="end-actions">
+
+        <a href="/#selected-work" class="end-link end-link-primary">
+          <span>←</span>
+          Back to Portfolio
+        </a>
+
+        <a href="/#selected-work" class="end-link end-link-secondary">
+          View Other Works
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+    <p class="end-signature">
+      by Manya Parwal
+    </p>
+
+  </section>
+
+  <script>
+
+    /* =========================================================
+       SCROLL REVEALS
+    ========================================================= */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -40px 0px"
+        }
+      );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+
+    /* =========================================================
+       WEBSITE PAGES
+       
+       If any filename is different in your folder,
+       only change the image path here.
+    ========================================================= */
+
+    const websitePages = [
+      {
+        name: "Home",
+        description: "The first introduction to Mamarise",
+        image: "/mamarise/home-page.png",
+        url: "mamarise.com"
+      },
+      {
+        name: "Wellness",
+        description: "A space to slow down and check in",
+        image: "/mamarise/wellness-page.png",
+        url: "mamarise.com/wellness"
+      },
+      {
+        name: "Parenting",
+        description: "Support for the questions that come with parenting",
+        image: "/mamarise/parenting-page.png",
+        url: "mamarise.com/parenting"
+      },
+      {
+        name: "Career",
+        description: "A place for ambition, work and finding your next step",
+        image: "/mamarise/career-page.png",
+        url: "mamarise.com/career"
+      },
+      {
+        name: "Community",
+        description: "Because some things feel easier when shared",
+        image: "/mamarise/community-page.png",
+        url: "mamarise.com/community"
+      },
+      {
+        name: "Experts",
+        description: "Real guidance when a little more support is needed",
+        image: "/mamarise/experts-page.png",
+        url: "mamarise.com/experts"
+      },
+      {
+        name: "Log In",
+        description: "A simple way to return to your Mamarise space",
+        image: "/mamarise/Login-website.png",
+        url: "mamarise.com/login"
+      },
+      {
+        name: "Sign Up",
+        description: "The first step into the Mamarise ecosystem",
+        image: "/mamarise/Sign-upwebsite.png",
+        url: "mamarise.com/signup"
+      }
+    ];
+
+
+    /* =========================================================
+       APP SCREENS
+       
+       Add more screens here whenever you finish them.
+    ========================================================= */
+
+    const appScreens = [
+      {
+        name: "Splash",
+        description: "The first little hello from Mamarise",
+        image: "/mamarise/app-splash.png",
+        scrollable: false
+      },
+      {
+        name: "Welcome",
+        description: "A softer first step into the experience",
+        image: "/mamarise/app-onboarding-1.png",
+        scrollable: false
+      },
+      {
+        name: "Everyday wellbeing",
+        description: "Introducing support that fits into real life",
+        image: "/mamarise/app-onboarding-2.png",
+        scrollable: false
+      },
+      {
+        name: "Personalised support",
+        description: "Making the experience feel personal from the beginning",
+        image: "/mamarise/app-onboarding-3.png",
+        scrollable: false
+      },
+      {
+        name: "Welcome back",
+        description: "A simple way to return to where you left off",
+        image: "/mamarise/app-welcome-back.png",
+        scrollable: false
+      },
+      {
+        name: "Get started",
+        description: "Beginning the journey without making it feel overwhelming",
+        image: "/mamarise/app-get-started.png",
+        scrollable: false
+      },
+      {
+        name: "Create account",
+        description: "Keeping sign up clear and uncomplicated",
+        image: "/mamarise/app-create-account.png",
+        scrollable: false
+      },
+      {
+        name: "Tell us",
+        description: "Learning a little more before personalising the experience",
+        image: "/mamarise/app-tell-us.png",
+        scrollable: false
+      },
+      {
+        name: "Who are you?",
+        description: "Understanding the role that feels most relevant right now",
+        image: "/mamarise/app-who-are-you.png",
+        scrollable: false
+      },
+      {
+        name: "What matters most?",
+        description: "Letting her choose what she wants support with",
+        image: "/mamarise/app-what-matters.png",
+        scrollable: false
+      },
+      {
+        name: "Today's session",
+        description: "A small moment shaped around what she needs today",
+        image: "/mamarise/app-today-session.png",
+        scrollable: false
+      },
+      {
+        name: "Ready",
+        description: "A small pause before entering the personalised experience",
+        image: "/mamarise/app-ready.png",
+        scrollable: false
+      },
+      {
+        name: "Continue your journey",
+        description: "Making it easy to return and pick up from where she stopped",
+        image: "/mamarise/Continueyour-journeyapp.png",
+        scrollable: false
+      },
+      {
+        name: "Home",
+        description: "Everything that matters today, brought into one place",
+        image: "/mamarise/app-home.png",
+        scrollable: true
+      }
+    ];
+
+
+    /* =========================================================
+       WEBSITE INTERACTION
+    ========================================================= */
+
+    let websiteIndex = 0;
+
+    const websiteImage =
+      document.getElementById("websiteImage");
+
+    const websiteCounter =
+      document.getElementById("websiteCounter");
+
+    const websitePageName =
+      document.getElementById("websitePageName");
+
+    const websitePageDescription =
+      document.getElementById("websitePageDescription");
+
+    const websiteUrl =
+      document.getElementById("websiteUrl");
+
+    const websiteScrollWindow =
+      document.getElementById("websiteScrollWindow");
+
+    const websiteDots =
+      document.getElementById("websiteDots");
+
+    const scrollHint =
+      document.getElementById("scrollHint");
+
+
+    function createWebsiteDots() {
+
+      websiteDots.innerHTML = "";
+
+      websitePages.forEach((page, index) => {
+
+        const dot = document.createElement("button");
+
+        dot.className = "page-dot";
+
+        dot.setAttribute(
+          "aria-label",
+          `Open ${page.name} page`
+        );
+
+        dot.addEventListener("click", () => {
+          websiteIndex = index;
+          updateWebsite();
+        });
+
+        websiteDots.appendChild(dot);
+
+      });
+
+    }
+
+
+    function updateWebsite() {
+
+      const page = websitePages[websiteIndex];
+
+      websiteImage.style.opacity = "0";
+
+      setTimeout(() => {
+
+        websiteImage.src = page.image;
+
+        websiteImage.alt =
+          `Mamarise ${page.name} page`;
+
+        websitePageName.textContent =
+          page.name;
+
+        websitePageDescription.textContent =
+          page.description;
+
+        websiteUrl.textContent =
+          page.url;
+
+        websiteCounter.textContent =
+          `${String(websiteIndex + 1).padStart(2, "0")} / ${String(websitePages.length).padStart(2, "0")}`;
+
+        websiteScrollWindow.scrollTop = 0;
+
+        scrollHint.style.opacity = "1";
+
+        websiteImage.style.opacity = "1";
+
+        updateWebsiteDots();
+
+      }, 180);
+
+    }
+
+
+    function updateWebsiteDots() {
+
+      const dots =
+        websiteDots.querySelectorAll(".page-dot");
+
+      dots.forEach((dot, index) => {
+
+        dot.classList.toggle(
+          "active",
+          index === websiteIndex
+        );
+
+      });
+
+    }
+
+
+    document
+      .getElementById("websitePrev")
+      .addEventListener("click", () => {
+
+        websiteIndex =
+          (
+            websiteIndex - 1 +
+            websitePages.length
+          ) %
+          websitePages.length;
+
+        updateWebsite();
+
+      });
+
+
+    document
+      .getElementById("websiteNext")
+      .addEventListener("click", () => {
+
+        websiteIndex =
+          (
+            websiteIndex + 1
+          ) %
+          websitePages.length;
+
+        updateWebsite();
+
+      });
+
+
+    websiteScrollWindow.addEventListener(
+      "scroll",
+      () => {
+
+        if (websiteScrollWindow.scrollTop > 20) {
+          scrollHint.style.opacity = "0";
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       APP INTERACTION
+    ========================================================= */
+
+    let appIndex = 0;
+
+    const appImage =
+      document.getElementById("appImage");
+
+    const appCounter =
+      document.getElementById("appCounter");
+
+    const appPageName =
+      document.getElementById("appPageName");
+
+    const appPageDescription =
+      document.getElementById("appPageDescription");
+
+    const appDots =
+      document.getElementById("appDots");
+
+    const appScrollWindow =
+      document.getElementById("appScrollWindow");
+
+
+    function createAppDots() {
+
+      appDots.innerHTML = "";
+
+      appScreens.forEach((screen, index) => {
+
+        const dot = document.createElement("button");
+
+        dot.className = "page-dot";
+
+        dot.setAttribute(
+          "aria-label",
+          `Open ${screen.name} screen`
+        );
+
+        dot.addEventListener("click", () => {
+
+          appIndex = index;
+
+          updateApp();
+
+        });
+
+        appDots.appendChild(dot);
+
+      });
+
+    }
+
+
+    function updateApp() {
+
+      const screen =
+        appScreens[appIndex];
+
+      appImage.style.opacity = "0";
+
+      setTimeout(() => {
+
+        appImage.src =
+          screen.image;
+
+        appImage.alt =
+          `Mamarise ${screen.name} app screen`;
+
+        appPageName.textContent =
+          screen.name;
+
+        appPageDescription.textContent =
+          screen.description;
+
+        appCounter.textContent =
+          `${String(appIndex + 1).padStart(2, "0")} / ${String(appScreens.length).padStart(2, "0")}`;
+
+        appScrollWindow.scrollTop = 0;
+
+        if (screen.scrollable) {
+          appScrollWindow.classList.remove("is-static");
+        } else {
+          appScrollWindow.classList.add("is-static");
+        }
+
+        appImage.style.opacity = "1";
+
+        updateAppDots();
+
+      }, 180);
+
+    }
+
+
+    function updateAppDots() {
+
+      const dots =
+        appDots.querySelectorAll(".page-dot");
+
+      dots.forEach((dot, index) => {
+
+        dot.classList.toggle(
+          "active",
+          index === appIndex
+        );
+
+      });
+
+    }
+
+
+    document
+      .getElementById("appPrev")
+      .addEventListener("click", () => {
+
+        appIndex =
+          (
+            appIndex - 1 +
+            appScreens.length
+          ) %
+          appScreens.length;
+
+        updateApp();
+
+      });
+
+
+    document
+      .getElementById("appNext")
+      .addEventListener("click", () => {
+
+        appIndex =
+          (
+            appIndex + 1
+          ) %
+          appScreens.length;
+
+        updateApp();
+
+      });
+
+
+    /* =========================================================
+       INITIALISE
+    ========================================================= */
+
+    createWebsiteDots();
+    createAppDots();
+
+    updateWebsite();
+    updateApp();
+
+
+    /* =========================================================
+       HERO PARALLAX
+    ========================================================= */
+
+    const heroVisual =
+      document.querySelector(".hero-visual");
+
+    const browserCard =
+      document.querySelector(".browser-card");
+
+    const phoneCard =
+      document.querySelector(".phone-card");
+
+
+    if (
+      heroVisual &&
+      browserCard &&
+      phoneCard
+    ) {
+
+      heroVisual.addEventListener(
+        "mousemove",
+        (event) => {
+
+          if (window.innerWidth <= 1000) {
+            return;
+          }
+
+          const rect =
+            heroVisual.getBoundingClientRect();
+
+          const x =
+            (
+              event.clientX -
+              rect.left
+            ) /
+            rect.width -
+            0.5;
+
+          const y =
+            (
+              event.clientY -
+              rect.top
+            ) /
+            rect.height -
+            0.5;
+
+          browserCard.style.transform =
+            `
+              rotate(${-2 + x * 0.8}deg)
+              translate(
+                ${x * 5}px,
+                ${y * 5}px
+              )
+            `;
+
+          phoneCard.style.transform =
+            `
+              rotate(${3 - x * 1.2}deg)
+              translate(
+                ${x * -6}px,
+                ${y * -6}px
+              )
+            `;
+
+        }
+      );
+
+
+      heroVisual.addEventListener(
+        "mouseleave",
+        () => {
+
+          browserCard.style.transform =
+            "rotate(-2deg)";
+
+          phoneCard.style.transform =
+            "rotate(3deg)";
+
+        }
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>

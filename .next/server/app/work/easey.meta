@@ -1,0 +1,9 @@
+{
+  "status": 307,
+  "headers": {
+    "location": "/easey.html",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/work/layout,_N_T_/work/easey/layout,_N_T_/work/easey/page,_N_T_/work/easey"
+  }
+}

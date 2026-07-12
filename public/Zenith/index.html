@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ZENITH Armory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --black: #050608;
+  --deep: #0a0c10;
+  --surface: #111318;
+  --border: #1e2028;
+  --muted: #2a2d38;
+  --steel: #3d4255;
+  --fog: #6b7080;
+  --silver: #9aa0b0;
+  --light: #c8cdd8;
+  --white: #eef0f5;
+  --accent: #4a8fa8;
+  --accent-glow: #5ba8c4;
+  --gold: #c9a84c;
+  --gold-light: #e2c06a;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-ui: 'Rajdhani', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--light);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--accent); }
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 28px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
+}
+nav.scrolled {
+  background: rgba(5,6,8,0.92);
+  backdrop-filter: blur(20px);
+  padding: 18px 60px;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+.nav-logo-main { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; letter-spacing: 0.35em; color: var(--white); }
+.nav-logo-sub { font-family: var(--font-ui); font-size: 0.55rem; letter-spacing: 0.5em; color: var(--accent); text-transform: uppercase; margin-top: 2px; }
+.nav-links { display: flex; gap: 48px; list-style: none; }
+.nav-links a { font-family: var(--font-ui); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--silver); text-decoration: none; position: relative; transition: color 0.3s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s; }
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links li.active a { color: var(--white); }
+.nav-links li.active a::after { width: 100%; }
+.nav-icons { display: flex; gap: 24px; align-items: center; }
+.nav-icons button { background: none; border: none; color: var(--silver); cursor: none; transition: color 0.3s; font-size: 1rem; position: relative; }
+.nav-icons button:hover { color: var(--white); }
+.cart-badge { position: absolute; top: -6px; right: -6px; width: 14px; height: 14px; background: var(--accent); border-radius: 50%; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-ui); }
+
+/* ═══════════════════════════════════════
+   HERO (SCROLL CONTAINER)
+═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--black);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 75% 50%, transparent 15%, rgba(5,6,8,0.95) 85%),
+    radial-gradient(ellipse 60% 80% at 75% 50%, rgba(10,25,40,0.9) 0%, transparent 70%),
+    linear-gradient(135deg, #050608 0%, #0a0e14 40%, #080c12 100%);
+  z-index: 0;
+}
+.hero-ocean-effect { position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='800' height='600' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); opacity: 0.5; filter: blur(2px); }
+.hero-light-beam { position: absolute; top: 0; right: 30%; width: 2px; height: 100%; background: linear-gradient(to bottom, rgba(74,143,168,0.3), transparent 60%); animation: beam-flicker 4s ease-in-out infinite; z-index: 1; filter: blur(1px); }
+.hero-light-beam-2 { position: absolute; top: 0; right: 28%; width: 1px; height: 70%; background: linear-gradient(to bottom, rgba(74,143,168,0.15), transparent); animation: beam-flicker 6s ease-in-out infinite 2s; z-index: 1; filter: blur(1px); }
+@keyframes beam-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.bubbles { position: absolute; right: 35%; bottom: 0; width: 200px; height: 100%; pointer-events: none; }
+.bubble { position: absolute; bottom: -20px; border-radius: 50%; background: rgba(74,143,168,0.15); border: 1px solid rgba(74,143,168,0.2); animation: bubble-rise linear infinite; }
+.bubble:nth-child(1) { width: 4px; height: 4px; left: 20%; animation-duration: 6s; animation-delay: 0s; }
+.bubble:nth-child(2) { width: 6px; height: 6px; left: 50%; animation-duration: 8s; animation-delay: 1s; }
+.bubble:nth-child(3) { width: 3px; height: 3px; left: 75%; animation-duration: 5s; animation-delay: 2s; }
+.bubble:nth-child(4) { width: 5px; height: 5px; left: 35%; animation-duration: 7s; animation-delay: 3s; }
+.bubble:nth-child(5) { width: 4px; height: 4px; left: 60%; animation-duration: 9s; animation-delay: 0.5s; }
+@keyframes bubble-rise { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 0.5; } 100% { transform: translateY(-100vh) translateX(20px); opacity: 0; } }
+
+.hero-content { position: relative; z-index: 2; padding: 0 60px; width: 55%; }
+.hero-eyebrow { font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; opacity: 0; animation: fade-up 1s ease forwards 0.3s; }
+.hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+.hero-title { font-family: var(--font-display); font-size: clamp(4rem, 7vw, 7rem); font-weight: 300; line-height: 0.95; color: var(--white); margin-bottom: 16px; opacity: 0; animation: fade-up 1s ease forwards 0.5s; }
+.hero-title em { font-style: italic; color: var(--accent-glow); }
+.hero-title-line2 { font-family: var(--font-display); font-size: clamp(4rem, 7vw, 7rem); font-weight: 300; line-height: 0.95; color: var(--fog); margin-bottom: 54px; opacity: 0; animation: fade-up 1s ease forwards 0.7s; }
+.hero-sub { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; letter-spacing: 0.08em; line-height: 2; color: var(--fog); max-width: 380px; margin-bottom: 74px; opacity: 0; animation: fade-up 1s ease forwards 0.9s; }
+.hero-actions { display: flex; align-items: center; gap: 48px; opacity: 0; animation: fade-up 1s ease forwards 1.1s; }
+.btn-primary { font-family: var(--font-ui); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--black); background: var(--accent); border: none; padding: 18px 44px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.btn-primary:hover { background: var(--gold); color: var(--black); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
+.btn-primary.clicked { transform: scale(0.95); background: var(--gold-light); }
+.btn-ghost { font-family: var(--font-ui); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver); text-decoration: none; display: flex; align-items: center; gap: 12px; transition: color 0.3s; }
+.btn-ghost svg { transition: transform 0.3s; }
+.btn-ghost:hover { color: var(--white); }
+.btn-ghost:hover svg { transform: translateX(6px); }
+
+/* CANVAS WATCH */
+.hero-watch { position: absolute; right: -2%; top: 50%; transform: translateY(-50%); width: 58%; height: 95%; display: flex; align-items: center; justify-content: center; z-index: 5; }
+.watch-placeholder { width: 620px; height: 620px; position: relative; opacity: 0; animation: watch-emerge 2s ease forwards 0.8s; }
+@keyframes watch-emerge { 0% { opacity: 0; filter: blur(20px); transform: scale(0.95); } 100% { opacity: 1; filter: blur(0); transform: scale(1); } }
+.watch-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(74,143,168,0.2) 0%, transparent 60%); animation: glow-pulse 4s ease-in-out infinite; z-index: -1; filter: blur(40px); }
+.watch-bottom-glow { position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); width: 450px; height: 80px; background: radial-gradient(ellipse, rgba(74,143,168,0.3) 0%, transparent 70%); z-index: -1; }
+@keyframes glow-pulse { 0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } }
+.watch-canvas-container { width: 100%; height: 100%; position: relative; }
+#heroCanvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen; 
+  filter: contrast(1.18) brightness(1.08) saturate(1.1) drop-shadow(0 50px 60px rgba(0,0,0,0.9));
+}
+.watch-caustic { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(74,143,168,0.03) 40px, rgba(74,143,168,0.03) 41px); animation: caustic-move 8s linear infinite; pointer-events: none;}
+@keyframes caustic-move { 0% { transform: translateX(0); } 100% { transform: translateX(80px); } }
+
+/* Hero Extras */
+.hero-scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 16px; opacity: 0; animation: fade-in 1s ease forwards 1.4s; z-index: 10; cursor: pointer; }
+.scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, rgba(74,143,168,0.1), var(--accent)); animation: scroll-drop 2.2s cubic-bezier(0.77, 0, 0.175, 1) infinite; }
+@keyframes scroll-drop { 0% { transform: scaleY(0); transform-origin: top; opacity: 0; } 45% { transform: scaleY(1); transform-origin: top; opacity: 1; } 55% { transform: scaleY(1); transform-origin: bottom; opacity: 1; } 100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; } }
+.scroll-text { font-family: var(--font-ui); font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--fog); text-shadow: 0 0 10px rgba(0,0,0,0.5); }
+
+.hero-depth { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fade-in 1s ease forwards 1.6s; }
+.depth-label { font-family: var(--font-ui); font-size: 0.5rem; letter-spacing: 0.3em; color: var(--fog); writing-mode: vertical-rl; }
+.depth-line { width: 1px; height: 120px; background: linear-gradient(to bottom, var(--accent), transparent); }
+.depth-value { font-family: var(--font-display); font-size: 0.9rem; color: var(--accent); }
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* LOADER OVERLAY */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+.loader-overlay.hidden { opacity: 0; }
+.loader-text { font-family: var(--font-display); font-size: 2rem; color: var(--white); letter-spacing: 0.3em; margin-bottom: 20px; font-weight: 300; }
+.loader-bar { width: 200px; height: 1px; background: rgba(255,255,255,0.1); position: relative; overflow: hidden; }
+.loader-progress { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--accent); transition: width 0.1s linear; }
+.loader-count { font-family: var(--font-ui); font-size: 0.6rem; color: var(--fog); margin-top: 10px; letter-spacing: 0.2em; }
+
+/* ═══════════════════════════════════════
+   SECTION SHARED
+═══════════════════════════════════════ */
+section { position: relative; }
+.section-label { font-family: var(--font-ui); font-size: 0.6rem; letter-spacing: 0.6em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
+.section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+.section-title { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.1; color: var(--fog); margin-bottom: 20px; }
+.section-title em { font-style: italic; color: var(--accent-glow); font-size: 1.4em; font-weight: 400; display: inline-block; margin-top: 4px; }
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* (Rest of website CSS omitted for brevity, adding the remaining core UI back below) */
+
+/* PRODUCTS */
+.products-section { 
+  padding: 50px 60px 140px; 
+  background: radial-gradient(circle at 20% 0%, rgba(74,143,168,0.05) 0%, transparent 40%),
+              radial-gradient(ellipse at 80% 100%, rgba(10,25,40,0.7) 0%, var(--black) 80%);
+  background-color: var(--black);
+  position: relative; 
+}
+.products-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(74,143,168,0.015) 40px, rgba(74,143,168,0.015) 41px);
+  pointer-events: none; z-index: 0;
+}
+.products-section > * { position: relative; z-index: 1; }
+.products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 70px; border-top: 1px solid rgba(107, 112, 128, 0.15); padding-top: 45px; }
+.products-header-left { max-width: 500px; }
+.view-all { font-family: var(--font-ui); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--fog); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; position: relative; opacity: 0.8; padding-bottom: 4px; }
+.view-all::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.4s ease; }
+.view-all svg { transition: transform 0.3s ease; stroke-width: 1.5; }
+.view-all:hover { color: var(--white); opacity: 1; }
+.view-all:hover::after { width: 100%; }
+.view-all:hover svg { transform: translateX(5px); color: var(--accent-glow); }
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.product-card { position: relative; background: var(--deep); overflow: hidden; cursor: none; }
+.product-card::before { content: ''; position: absolute; inset: 0; border: 1px solid transparent; transition: border-color 0.4s; z-index: 2; pointer-events: none; }
+.product-card:hover::before { border-color: var(--accent); }
+.product-img-wrap { position: relative; aspect-ratio: 3/4; overflow: hidden; background: linear-gradient(135deg, #0d1018, #111520); display: flex; align-items: center; justify-content: center; }
+.product-img-wrap svg { transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.product-card:hover .product-img-wrap svg { transform: scale(1.08) rotate(3deg); }
+.product-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,6,8,0.8) 0%, transparent 50%); z-index: 1; }
+.product-badge { position: absolute; top: 20px; left: 20px; background: var(--accent); color: var(--black); font-family: var(--font-ui); font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 6px 14px; z-index: 3; }
+.product-info { padding: 28px 24px; border-top: 1px solid var(--border); }
+.product-ref { font-family: var(--font-ui); font-size: 0.55rem; letter-spacing: 0.35em; color: var(--fog); margin-bottom: 8px; }
+.product-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: var(--white); margin-bottom: 6px; }
+.product-desc { font-family: var(--font-body); font-size: 0.7rem; color: var(--fog); margin-bottom: 20px; line-height: 1.6; }
+.product-footer { display: flex; justify-content: space-between; align-items: center; }
+.product-price { font-family: var(--font-display); font-size: 1.4rem; color: var(--gold-light); }
+.product-price-sub { font-family: var(--font-body); font-size: 0.6rem; color: var(--fog); margin-top: 2px; }
+
+/* SIGNATURE / PRECISION */
+.signature-section { 
+  padding: 0; 
+  background: var(--black); 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  min-height: 600px; 
+  border-top: 1px solid rgba(107, 112, 128, 0.15); 
+  border-bottom: 1px solid rgba(107, 112, 128, 0.15); 
+  position: relative;
+}
+.signature-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(74,143,168,0.04) 0%, transparent 60%),
+              repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(74,143,168,0.015) 40px, rgba(74,143,168,0.015) 41px);
+  pointer-events: none; z-index: 0;
+}
+.signature-visual { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--black); min-height: 500px; z-index: 1;}
+.signature-img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; animation: subtle-zoom 20s linear infinite alternate; }
+.signature-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 50%, var(--black) 98%); z-index: 2; pointer-events: none; }
+@keyframes subtle-zoom { 0% { transform: scale(1); filter: brightness(1) saturate(1); } 100% { transform: scale(1.05); filter: brightness(1.1) saturate(1.1); } }
+.signature-content { padding: 100px 90px; display: flex; flex-direction: column; justify-content: center; z-index: 2; position: relative; }
+.signature-quote { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; font-style: italic; line-height: 1.4; color: var(--white); margin-bottom: 54px; position: relative; padding-left: 30px; letter-spacing: 0.02em; }
+.signature-quote::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 1px; background: rgba(74,143,168,0.6); }
+.quote-light { color: var(--fog); font-weight: 300; }
+.signature-body { font-family: var(--font-body); font-size: 0.78rem; font-weight: 300; line-height: 2.3; color: rgba(107, 112, 128, 0.85); margin-bottom: 64px; max-width: 340px; }
+.signature-cta { align-self: flex-start; }
+
+/* PRESS STRIP */
+.press-strip { padding: 45px 60px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 60px; }
+.press-label { font-family: var(--font-ui); font-size: 0.6rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--silver); white-space: nowrap; flex-shrink: 0; display: flex; align-items: center; gap: 40px; }
+.press-label::after { content: ''; width: 1px; height: 30px; background: rgba(107, 112, 128, 0.3); }
+.press-logos { display: flex; align-items: center; justify-content: space-between; flex: 1; padding: 0 20px; }
+.press-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--fog); letter-spacing: 0.15em; transition: all 0.4s ease; cursor: pointer; opacity: 0.75; }
+.press-logo:hover { color: var(--white); opacity: 1; transform: translateY(-3px); text-shadow: 0 0 16px rgba(255,255,255,0.3); }
+
+/* FOOTER */
+footer { background: var(--black); padding: 100px 60px 40px; position: relative; }
+footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(74,143,168,0.2), transparent); }
+.footer-top { display: grid; grid-template-columns: 2.5fr 1fr 1fr; gap: 80px; margin-bottom: 50px; }
+.footer-brand .nav-logo-main { font-size: 2rem; margin-bottom: 6px; display: block; color: var(--white); text-decoration: none; }
+.footer-desc { font-family: var(--font-body); font-size: 0.68rem; line-height: 2.2; color: var(--fog); opacity: 0.7; max-width: 280px; margin-bottom: 40px; font-weight: 300; }
+.newsletter-title { font-family: var(--font-display); font-size: 1.25rem; color: var(--white); margin-bottom: 6px; font-weight: 300; }
+.newsletter-sub { font-family: var(--font-body); font-size: 0.65rem; color: var(--fog); margin-bottom: 20px; font-style: italic; }
+.newsletter-form { display: flex; align-items: center; border-bottom: 1px solid rgba(154, 160, 176, 0.3); padding-bottom: 8px; max-width: 300px; transition: border-color 0.3s; }
+.newsletter-form:focus-within { border-color: var(--accent); }
+.newsletter-input { background: none; border: none; color: var(--white); font-family: var(--font-body); font-size: 0.7rem; flex: 1; outline: none; padding: 4px 0; }
+.newsletter-input::placeholder { color: rgba(107,112,128,0.5); }
+.newsletter-btn { background: none; border: none; color: var(--silver); cursor: pointer; font-size: 1rem; transition: all 0.3s; padding: 0 8px; display: flex; align-items: center; justify-content: center; }
+.newsletter-btn:hover { color: var(--accent-glow); text-shadow: 0 0 8px rgba(91,168,196,0.5); transform: translateX(3px); }
+.footer-col-title { font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--white); margin-bottom: 32px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+.footer-links a { font-family: var(--font-body); font-size: 0.7rem; color: var(--fog); text-decoration: none; position: relative; transition: color 0.3s; font-weight: 300; display: inline-block; padding-bottom: 4px; }
+.footer-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: rgba(74,143,168,0.6); transition: width 0.3s ease, opacity 0.3s; opacity: 0; }
+.footer-links a:hover { color: var(--white); }
+.footer-links a:hover::after { width: 100%; opacity: 1; }
+.footer-middle { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-top: 1px solid rgba(30, 32, 40, 0.5); border-bottom: 1px solid rgba(30, 32, 40, 0.5); margin-bottom: 40px; }
+.trust-signals { display: flex; gap: 40px; }
+.trust-item { display: flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fog); opacity: 0.9; }
+.trust-item svg { width: 16px; height: 16px; stroke-width: 1.2; stroke: currentColor; fill: none; }
+.social-icons { display: flex; gap: 24px; }
+.social-icons a { color: var(--fog); transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+.social-icons a svg { width: 18px; height: 18px; stroke-width: 1.2; fill: none; stroke: currentColor; }
+.social-icons a:hover { color: var(--accent-glow); filter: drop-shadow(0 0 4px rgba(91,168,196,0.4)); transform: translateY(-2px); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-family: var(--font-body); font-size: 0.65rem; color: rgba(107,112,128,0.5); font-weight: 300; }
+.footer-legal-links { display: flex; gap: 24px; }
+.footer-legal-links a { font-family: var(--font-body); font-size: 0.65rem; color: rgba(107,112,128,0.5); text-decoration: none; transition: color 0.3s; font-weight: 300; }
+.footer-legal-links a:hover { color: var(--silver); }
+@media (max-width: 500px) {
+  nav { padding: 16px 20px; flex-direction: column; gap: 12px; }
+  nav.scrolled { padding: 12px 20px; }
+  .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
+  
+  .hero { flex-direction: column; justify-content: center; padding-top: 140px; height: auto; min-height: 100vh; }
+  .hero-content { width: 100%; padding: 0 20px; text-align: center; margin-top: 0; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-title { font-size: 3.5rem; }
+  .hero-title-line2 { font-size: 3.5rem; margin-bottom: 24px; }
+  .hero-sub { margin: 0 auto 30px; }
+  .hero-actions { justify-content: center; }
+  
+  .hero-watch { width: 100%; height: 60vh; top: auto; bottom: 0; right: 0; transform: none; position: relative; margin-top: 20px; }
+  .watch-placeholder { width: 100%; height: 100%; }
+  .watch-glow { width: 300px; height: 300px; }
+  .hero-depth { display: none; }
+  
+  .press-strip { flex-direction: column; gap: 20px; padding: 30px 20px; }
+  .press-logos { flex-wrap: wrap; justify-content: center; gap: 20px; }
+  
+  .products-section { padding: 50px 20px 80px; }
+  .products-header { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+  .products-grid { grid-template-columns: 1fr; gap: 20px; }
+  
+  .signature-section { grid-template-columns: 1fr; }
+  .signature-visual { min-height: 300px; }
+  .signature-content { padding: 60px 20px; align-items: center; text-align: center; }
+  .signature-quote { padding-left: 0; font-size: 2rem; }
+  .signature-quote::before { display: none; }
+  
+  .footer-top { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .footer-brand { align-items: center; display: flex; flex-direction: column; }
+  .newsletter-form { margin: 0 auto; }
+  footer { padding: 60px 20px 30px; }
+  .footer-middle { flex-direction: column; gap: 30px; align-items: center; }
+  .trust-signals { flex-direction: column; gap: 16px; }
+  .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader-overlay" id="loaderOverlay">
+  <img src="public/logo-full.png" alt="ZENITH Armory" style="height: 44px; width: auto; margin-bottom: 24px;" />
+  <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
+  <div class="loader-count" id="loaderCount">Loading Assets 0%</div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="public/logo-full.png" alt="ZENITH Armory" style="height: 38px; width: auto; display: block;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="collection.html">Collections</a></li>
+    <li><a href="timepieces.html">Timepieces</a></li>
+    <li><a href="maison.html">Maison</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-ocean-effect"></div>
+    <div class="hero-light-beam"></div>
+    <div class="hero-light-beam-2"></div>
+    <div class="bubbles">
+      <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">The Sentinel Collection</div>
+      <div class="hero-title">Time,</div>
+      <div class="hero-title-line2">Perfected.</div>
+      <p class="hero-sub">Born from the depths. Engineered for the surface. Every Zenith Armory timepiece is a testament to uncompromising precision — built to master the hostile and remain elegant above it.</p>
+      <div class="hero-actions">
+        <a href="collection.html" class="btn-primary" onclick="event.preventDefault(); this.classList.add('clicked'); this.textContent = 'Entering Collection...'; setTimeout(() => window.location.href = this.href, 500);">Enter the Collection</a>
+      </div>
+    </div>
+
+    <!-- CANVAS WATCH ILLUSTRATION -->
+    <div class="hero-watch">
+      <div class="watch-caustic"></div>
+      <div class="watch-placeholder">
+        <div class="watch-glow"></div>
+        <div class="watch-bottom-glow"></div>
+        <div class="watch-canvas-container">
+          <canvas id="heroCanvas" width="800" height="800"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+      <span class="scroll-text">Scroll to Explore</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <div class="hero-depth">
+      <span class="depth-label">Water Resistance</span>
+      <div class="depth-line"></div>
+      <span class="depth-value">300M</span>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     PRESS STRIP
+═══════════════════════════════════════ -->
+<div class="press-strip">
+  <span class="press-label">As seen in</span>
+  <div class="press-logos">
+    <span class="press-logo">Vogue</span>
+    <span class="press-logo">GQ</span>
+    <span class="press-logo">Forbes</span>
+    <span class="press-logo">Architectural Digest</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FEATURED PRODUCTS
+═══════════════════════════════════════ -->
+<section class="products-section" id="products">
+  <div class="products-header reveal">
+    <div class="products-header-left">
+      <div class="section-label">The Collection</div>
+      <h2 class="section-title">Featured <br><em>Timepieces</em></h2>
+    </div>
+    <a href="#" class="view-all">View All Timepieces <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+  </div>
+  <div class="products-grid">
+    <!-- Product 1 -->
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-img-wrap">
+        <div class="product-badge">Flagship</div>
+        <img src="public/sentinel-diver.jpg" alt="The Sentinel Diver" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+      <div class="product-info">
+        <div class="product-ref">Ref. ZA.3001.01.Dive</div>
+        <div class="product-name">The Sentinel Diver</div>
+        <div class="product-desc">Marine-grade 316L steel · 300M water resistance</div>
+        <div class="product-footer">
+          <div><div class="product-price">₹10,45,000</div><div class="product-price-sub">In Stock</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Product 2 -->
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-img-wrap">
+        <img src="public/meridian-classic.jpg" alt="The Meridian Classic" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+      <div class="product-info">
+        <div class="product-ref">Ref. ZA.2200.04.Gold</div>
+        <div class="product-name">The Meridian Classic</div>
+        <div class="product-desc">18k rose gold case · Guilloché sunburst dial</div>
+        <div class="product-footer">
+          <div><div class="product-price">₹18,75,000</div><div class="product-price-sub">Made to Order</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Product 3 -->
+    <div class="product-card reveal reveal-delay-3">
+      <div class="product-img-wrap">
+        <div class="product-badge" style="background:var(--gold);color:#000">Limited</div>
+        <img src="public/phantom-chronograph.jpg" alt="Phantom Chronograph" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+      <div class="product-info">
+        <div class="product-ref">Ref. ZA.9900.LE.001</div>
+        <div class="product-name">Phantom Chronograph</div>
+        <div class="product-desc">Limited to 50 pieces · DLC-coated titanium</div>
+        <div class="product-footer">
+          <div><div class="product-price">₹32,00,000</div><div class="product-price-sub">3 left</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SIGNATURE / PRECISION SECTION
+═══════════════════════════════════════ -->
+<section class="signature-section">
+  <div class="signature-visual reveal">
+    <img src="public/zenith-standard.jpg" alt="Zenith Standard Showcase" class="signature-img" />
+  </div>
+  <div class="signature-content">
+    <div class="section-label reveal">The Zenith Armory Standard</div>
+    <div class="signature-quote reveal reveal-delay-1">Engineered with precision.<br><span class="quote-light">Worn with purpose.</span></div>
+    <p class="signature-body reveal reveal-delay-2">Every movement that leaves our atelier is regulated to within ±2 seconds per day — a standard we've maintained since 1865.</p>
+    <a href="#" class="view-all signature-cta reveal reveal-delay-3">Explore the Armory <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" style="display:inline-block"><img src="public/logo-full.png" alt="ZENITH Armory" style="height: 44px; width: auto; display: block; margin-bottom: 12px;" /></a>
+      <p class="footer-desc">Crafting precision timepieces for those who understand the weight of every second.</p>
+      
+      <div class="newsletter-title">Join the Zenith Armory Circle</div>
+      <div class="newsletter-sub">Early access to collections & releases</div>
+      <form class="newsletter-form" onsubmit="event.preventDefault()">
+        <input type="email" class="newsletter-input" placeholder="Email address" required>
+        <button type="submit" class="newsletter-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </form>
+    </div>
+    
+    <div>
+      <div class="footer-col-title">Shop</div>
+      <ul class="footer-links">
+        <li><a href="#">All Watches</a></li>
+        <li><a href="#">Dive & Sport</a></li>
+        <li><a href="#">Classic Collection</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="#">About Zenith Armory</a></li>
+        <li><a href="#">Craftsmanship</a></li>
+        <li><a href="#">Heritage</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <div class="trust-signals">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        2-Year Warranty
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        Free Shipping Worldwide
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+        30-Day Returns
+      </div>
+    </div>
+    <div class="social-icons">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+      <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M10 7h4c2 0 3 1 3 3s-1 3-3 3h-2v7"></path></svg></a>
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><line x1="4" y1="4" x2="20" y2="20"></line><line x1="20" y1="4" x2="4" y2="20"></line></svg></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Zenith Armory. All rights reserved.</div>
+    <div class="footer-legal-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Canvas Animation Setup
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+const frameCount = 192;
+const images = [];
+
+// Physics and scroll tracking variables
+let currentFrame = 0;
+let targetFrame = 0;
+let floatOffsetY = 0;
+let floatVelocity = 0;
+let lastScrollY = window.scrollY;
+
+// Load sequence
+const loaderOverlay = document.getElementById('loaderOverlay');
+const loaderProgress = document.getElementById('loaderProgress');
+const loaderCount = document.getElementById('loaderCount');
+let loadedImages = 0;
+
+for (let i = 1; i <= frameCount; i++) {
+  const img = new Image();
+  img.src = `./public/frames/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`;
+  img.onload = () => {
+    loadedImages++;
+    const progress = (loadedImages / frameCount) * 100;
+    loaderProgress.style.width = progress + '%';
+    loaderCount.innerText = `Loading Assets ${Math.round(progress)}%`;
+    
+    if (loadedImages === frameCount) {
+      setTimeout(() => {
+        loaderOverlay.classList.add('hidden');
+        requestAnimationFrame(renderLoop);
+      }, 500);
+    }
+  };
+  img.onerror = () => {
+    loadedImages++; // Ignore missing frames to prevent getting stuck
+  };
+  images.push(img);
+}
+
+// Autoplay animation variables
+let animationSpeed = 0.6; // Speed of autoplay
+let playingForward = true;
+
+function renderLoop(time) {
+  // Update frames continuously for autoplay
+  if (playingForward) {
+    currentFrame += animationSpeed;
+    if (currentFrame >= frameCount - 1) {
+      currentFrame = frameCount - 1;
+      playingForward = false;
+    }
+  } else {
+    currentFrame -= animationSpeed;
+    if (currentFrame <= 0) {
+      currentFrame = 0;
+      playingForward = true;
+    }
+  }
+
+  // Round to nearest integer for rendering
+  const clampedIndex = Math.floor(currentFrame);
+  
+  // Base hovering (sine wave) for anti-gravity
+  const baseFloat = Math.sin(time / 800) * 12; // 12px amplitude
+  const totalYOffset = baseFloat;
+
+  // Clear canvas and redraw
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  if (images[clampedIndex] && images[clampedIndex].complete) {
+    ctx.save();
+    
+    // Apply Y-axis translation for anti-gravity effect
+    ctx.translate(0, totalYOffset);
+    
+    // Keep aspect ratio centered and zoom in slightly to crop out the watermark
+    const imgRatio = images[clampedIndex].width / images[clampedIndex].height;
+    const canvasRatio = canvas.width / canvas.height;
+    
+    let drawWidth = canvas.width;
+    let drawHeight = canvas.height;
+    
+    if (imgRatio > canvasRatio) {
+      drawHeight = canvas.width / imgRatio;
+    } else {
+      drawWidth = canvas.height * imgRatio;
+    }
+
+    // Scale up by 1.15x to crop the edges (hiding the "veo" watermark at bottom right)
+    const scale = 1.15;
+    drawWidth *= scale;
+    drawHeight *= scale;
+    
+    const offsetX = (canvas.width - drawWidth) / 2;
+    const offsetY = (canvas.height - drawHeight) / 2;
+    
+    ctx.drawImage(images[clampedIndex], offsetX, offsetY, drawWidth, drawHeight);
+    
+    ctx.restore();
+  }
+  
+  requestAnimationFrame(renderLoop);
+}
+
+// Navbar opacity and smart hide
+const navbar = document.getElementById('navbar');
+let lastScrollTop = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  
+  // Add dark blur background when not at the top
+  navbar.classList.toggle('scrolled', scrollTop > 80);
+  
+  // Hide on down-scroll, show on up-scroll
+  if (scrollTop > lastScrollTop && scrollTop > 200) {
+    navbar.style.transform = 'translateY(-100%)';
+  } else {
+    navbar.style.transform = 'translateY(0)';
+  }
+  
+  lastScrollTop = Math.max(0, scrollTop);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

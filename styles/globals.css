@@ -1,0 +1,873 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./sections.css";
+
+
+/* ===========================================
+   ROOT VARIABLES
+=========================================== */
+
+:root {
+  /* COLORS */
+
+  --color-canvas: #0B0B12;
+
+  --color-surface: #14141C;
+  --color-surface-2: #1A1B24;
+  --color-surface-hover: #202230;
+
+  --color-text-primary: #F5F5F7;
+  --color-text-secondary: #A8AAB3;
+  --color-text-muted: #777C88;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  --color-accent-purple: #8B5CF6;
+  --color-accent-purple-light: #B89CFF;
+  --color-accent-cyan: #63D2FF;
+
+
+  /* RADIUS */
+
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+
+  --radius-image-top: 220px;
+  --radius-image-bottom: 80px;
+
+
+  /* SHADOWS */
+
+  --shadow-purple:
+    0 0 60px rgba(139, 92, 246, 0.18);
+
+  --shadow-card:
+    0 10px 40px rgba(0, 0, 0, 0.35);
+
+
+  /* FONTS */
+
+  --font-geist: "Geist", sans-serif;
+  --font-instrument-serif: "Instrument Serif", serif;
+}
+
+
+/* ===========================================
+   HTML
+=========================================== */
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-canvas);
+}
+
+
+/* ===========================================
+   BODY
+=========================================== */
+
+body {
+  margin: 0;
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+  color: var(--color-text-primary);
+
+  font-family: var(--font-geist);
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(139, 92, 246, 0.12),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at right,
+      rgba(88, 28, 135, 0.08),
+      transparent 30%
+    ),
+
+    var(--color-canvas);
+
+  -webkit-font-smoothing: antialiased;
+
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ===========================================
+   GLOBAL RESET
+=========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ===========================================
+   IMAGES
+=========================================== */
+
+img {
+  display: block;
+
+  max-width: 100%;
+
+  user-select: none;
+}
+
+
+/* ===========================================
+   BUTTONS
+=========================================== */
+
+button {
+  font: inherit;
+
+  border: none;
+
+  background: none;
+}
+
+
+/* ===========================================
+   INPUTS
+=========================================== */
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* ===========================================
+   LINKS
+=========================================== */
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+
+/* ===========================================
+   TEXT SELECTION
+=========================================== */
+
+::selection {
+  background: var(--color-accent-purple);
+
+  color: white;
+}
+
+
+/* ===========================================
+   SCROLLBAR
+=========================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #0B0B12;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #242632;
+
+  border-radius: 999px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #373B4A;
+}
+
+
+/* ===========================================
+   GLOBAL CUSTOM FIGMA CURSOR
+=========================================== */
+
+/*
+  Desktop/laptop with precise pointer:
+  Hide native browser cursor everywhere.
+
+  CustomCursor.tsx remains visible.
+*/
+
+@media (pointer: fine) and (min-width: 768px) {
+  html,
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
+
+/*
+  Touch devices:
+  Keep native/default behaviour.
+*/
+
+@media (pointer: coarse) {
+  html,
+  body,
+  body * {
+    cursor: auto !important;
+  }
+}
+
+
+/* ===========================================
+   HERO — NAVBAR ENTRANCE
+=========================================== */
+
+.hero-logo {
+  opacity: 0;
+
+  transform: translateY(-10px);
+
+  animation:
+    hero-fade-slide-down
+    0.65s
+    ease-out
+    forwards
+    0.2s;
+}
+
+
+.hero-status {
+  opacity: 0;
+
+  transform: translateX(10px);
+
+  animation:
+    hero-fade-slide-left
+    0.65s
+    ease-out
+    forwards
+    0.35s;
+}
+
+
+.hero-status-dot {
+  position: relative;
+
+  animation:
+    hero-status-pulse
+    1.8s
+    ease-in-out
+    infinite
+    0.5s;
+
+  box-shadow:
+    0 0 12px rgba(139, 92, 246, 0.55);
+}
+
+
+/* ===========================================
+   HERO — TEXT ENTRANCE
+=========================================== */
+
+.hero-subtitle {
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  animation:
+    hero-fade-slide-up
+    0.65s
+    ease-out
+    forwards
+    0.65s;
+}
+
+
+.hero-heading-mask {
+  overflow: hidden;
+}
+
+
+.hero-heading-reveal {
+  opacity: 0;
+
+  transform: translateY(100%);
+
+  animation:
+    hero-reveal-from-bottom
+    1.05s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards
+    1s;
+}
+
+
+.hero-italic-reveal {
+  opacity: 0;
+
+  transform: translateY(14px);
+
+  filter: blur(3px);
+
+  animation:
+    hero-reveal-italic
+    0.85s
+    ease-out
+    forwards
+    1.2s;
+}
+
+
+.hero-copy {
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  animation:
+    hero-fade-slide-up
+    0.75s
+    ease-out
+    forwards
+    1.4s;
+}
+
+
+/* ===========================================
+   HERO — PORTRAIT ENTRANCE
+=========================================== */
+
+.portrait-glow {
+  opacity: 0.08;
+
+  transform: scale(0.94);
+
+  animation:
+    hero-glow-expand
+    0.75s
+    ease-out
+    forwards
+    1.3s;
+}
+
+
+.portrait-entrance {
+  opacity: 0;
+
+  transform: translateY(20px) scale(0.96);
+
+  animation:
+    hero-portrait-appear
+    0.75s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards
+    1.3s;
+}
+
+
+/* ===========================================
+   HERO — CARDS ENTRANCE
+=========================================== */
+
+.hero-card {
+  opacity: 0;
+
+  transform: translateX(16px);
+
+  animation:
+    hero-card-slide-in
+    0.65s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+
+.hero-card:nth-child(1) {
+  animation-delay: 1.45s;
+}
+
+
+.hero-card:nth-child(2) {
+  animation-delay: 1.57s;
+}
+
+
+.hero-card:nth-child(3) {
+  animation-delay: 1.7s;
+}
+
+
+/* ===========================================
+   HERO — CURSOR HINT
+=========================================== */
+
+.cursor-hint {
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  animation:
+    hero-fade-slide-up
+    0.55s
+    ease-out
+    forwards
+    1.8s;
+}
+
+
+.cursor-hint-path,
+.cursor-hint-head {
+  stroke-dasharray: 120;
+
+  stroke-dashoffset: 120;
+
+  opacity: 0;
+
+  animation:
+    hero-draw-path
+    0.9s
+    ease-out
+    forwards
+    1.85s;
+}
+
+
+.cursor-hint-head {
+  stroke-dasharray: 40;
+
+  stroke-dashoffset: 40;
+}
+
+
+.cursor-hint-text {
+  opacity: 0;
+
+  transform: translateY(8px);
+
+  animation:
+    hero-fade-slide-up
+    0.55s
+    ease-out
+    forwards
+    1.95s;
+}
+
+
+/* ===========================================
+   HERO — TAGLINE
+=========================================== */
+
+.hero-tagline {
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  animation:
+    hero-fade-slide-up
+    0.55s
+    ease-out
+    forwards
+    1.95s;
+}
+
+
+.sparkle-glow {
+  animation:
+    hero-sparkle-pulse
+    2.5s
+    ease-in-out
+    infinite
+    2.2s;
+}
+
+
+/* ===========================================
+   HERO DECORATIONS — ORBIT
+=========================================== */
+
+.hero-orbit {
+  transform-origin: center;
+
+  animation:
+    hero-orbit-spin
+    32s
+    linear
+    infinite;
+
+  will-change: transform;
+}
+
+
+/* ===========================================
+   HERO DECORATIONS — FLOATING BADGES
+=========================================== */
+
+.hero-floating-badge {
+  animation:
+    hero-badge-float
+    5s
+    ease-in-out
+    infinite;
+
+  will-change: transform;
+}
+
+
+.hero-floating-badge-delayed {
+  animation:
+    hero-badge-float-delayed
+    6s
+    ease-in-out
+    infinite
+    0.8s;
+
+  will-change: transform;
+}
+
+
+/* ===========================================
+   HERO DECORATIONS — SCROLL INDICATOR
+=========================================== */
+
+.hero-scroll-indicator {
+  opacity: 0;
+
+  animation:
+    hero-scroll-indicator-appear
+    0.8s
+    ease-out
+    forwards
+    2.4s;
+}
+
+
+.hero-scroll-line {
+  animation:
+    hero-scroll-line-move
+    1.8s
+    ease-in-out
+    infinite;
+
+  will-change: transform, opacity;
+}
+
+
+/* ===========================================
+   KEYFRAMES — BASIC ENTRANCES
+=========================================== */
+
+@keyframes hero-fade-slide-down {
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes hero-fade-slide-left {
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes hero-fade-slide-up {
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes hero-reveal-from-bottom {
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes hero-reveal-italic {
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+
+    filter: blur(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — PORTRAIT
+=========================================== */
+
+@keyframes hero-portrait-appear {
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@keyframes hero-glow-expand {
+  from {
+    opacity: 0.08;
+
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 0.2;
+
+    transform: scale(1);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — CARDS
+=========================================== */
+
+@keyframes hero-card-slide-in {
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — CURSOR HINT
+=========================================== */
+
+@keyframes hero-draw-path {
+  to {
+    stroke-dashoffset: 0;
+
+    opacity: 1;
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — STATUS
+=========================================== */
+
+@keyframes hero-status-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+
+    opacity: 1;
+
+    box-shadow:
+      0 0 8px rgba(139, 92, 246, 0.45);
+  }
+
+  50% {
+    transform: scale(1.18);
+
+    opacity: 0.72;
+
+    box-shadow:
+      0 0 18px rgba(139, 92, 246, 0.8);
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — SPARKLE
+=========================================== */
+
+@keyframes hero-sparkle-pulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+
+    filter:
+      drop-shadow(
+        0 0 4px rgba(154, 107, 255, 0.45)
+      );
+  }
+
+  50% {
+    transform: scale(1.12) rotate(12deg);
+
+    filter:
+      drop-shadow(
+        0 0 9px rgba(154, 107, 255, 0.7)
+      );
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — ORBIT
+=========================================== */
+
+@keyframes hero-orbit-spin {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — FLOATING BADGES
+=========================================== */
+
+@keyframes hero-badge-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+
+@keyframes hero-badge-float-delayed {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 7px;
+  }
+}
+
+
+/* ===========================================
+   KEYFRAMES — SCROLL INDICATOR
+=========================================== */
+
+@keyframes hero-scroll-indicator-appear {
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes hero-scroll-line-move {
+  0% {
+    transform: translateY(-100%);
+
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(270%);
+
+    opacity: 0;
+  }
+}
+
+
+/* ===========================================
+   REDUCED MOTION ACCESSIBILITY
+=========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-logo,
+  .hero-status,
+  .hero-status-dot,
+  .hero-subtitle,
+  .hero-heading-reveal,
+  .hero-italic-reveal,
+  .hero-copy,
+  .portrait-entrance,
+  .portrait-glow,
+  .hero-card,
+  .cursor-hint,
+  .cursor-hint-path,
+  .cursor-hint-head,
+  .cursor-hint-text,
+  .hero-tagline,
+  .sparkle-glow,
+  .hero-orbit,
+  .hero-floating-badge,
+  .hero-floating-badge-delayed,
+  .hero-scroll-indicator,
+  .hero-scroll-line,
+  .section-heading,
+  .section-label,
+  .skill-pill,
+  .thought-card,
+  .timeline-panel,
+  .timeline-line,
+  .timeline-node {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
+
+  /*
+    Make entrance elements visible immediately
+    when reduced motion is enabled.
+  */
+
+  .hero-logo,
+  .hero-status,
+  .hero-subtitle,
+  .hero-heading-reveal,
+  .hero-italic-reveal,
+  .hero-copy,
+  .portrait-entrance,
+  .portrait-glow,
+  .hero-card,
+  .cursor-hint,
+  .cursor-hint-path,
+  .cursor-hint-head,
+  .cursor-hint-text,
+  .hero-tagline,
+  .hero-scroll-indicator {
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    filter: none !important;
+  }
+}

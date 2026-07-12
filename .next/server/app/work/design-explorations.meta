@@ -1,0 +1,9 @@
+{
+  "status": 307,
+  "headers": {
+    "location": "/design-explorations.html",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/work/layout,_N_T_/work/design-explorations/layout,_N_T_/work/design-explorations/page,_N_T_/work/design-explorations"
+  }
+}
