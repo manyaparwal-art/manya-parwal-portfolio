@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
+import SmoothScroll from "../components/SmoothScroll";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -31,7 +32,9 @@ export default function RootLayout({
     >
       <body>
         <CustomCursor />
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

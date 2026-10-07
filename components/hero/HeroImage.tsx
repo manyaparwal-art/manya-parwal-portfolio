@@ -34,7 +34,7 @@ export default function HeroImage({
   const imageRef = useRef<HTMLDivElement | null>(null);
 
   const REAL_IMAGE = "/images/manya.png";
-  const SKETCH_IMAGE = "/images/manya-sketch.png";
+  const SKETCH_IMAGE = "/images/manya-sketch .png";
 
   const [isHovered, setIsHovered] = useState(false);
   const [isFrameSelected, setIsFrameSelected] = useState(false);
