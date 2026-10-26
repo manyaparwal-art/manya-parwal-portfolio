@@ -1,5 +1,7 @@
+
 import type { Metadata } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
 import SmoothScroll from "../components/SmoothScroll";
@@ -18,6 +20,9 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Project M",
   description: "Product Designer Portfolio of Manya Parwal",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -32,9 +37,8 @@ export default function RootLayout({
     >
       <body>
         <CustomCursor />
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
