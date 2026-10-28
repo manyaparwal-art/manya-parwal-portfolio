@@ -109,7 +109,7 @@ export default function Hero() {
 
         <div className="flex flex-1 items-center py-14 sm:py-16 md:py-20 lg:py-8">
 
-          <div className="grid w-full items-center gap-14 sm:gap-16 md:gap-20 lg:grid-cols-[minmax(270px,0.92fr)_minmax(290px,0.86fr)_minmax(250px,0.82fr)] lg:gap-8 xl:grid-cols-[minmax(320px,1fr)_minmax(340px,0.88fr)_minmax(280px,0.8fr)] xl:gap-14 2xl:grid-cols-[minmax(350px,1.05fr)_minmax(380px,0.88fr)_minmax(300px,0.78fr)] 2xl:gap-20">
+          <div className="grid w-full items-center gap-14 sm:gap-16 md:gap-20 lg:grid-cols-[minmax(0,1fr)_minmax(320px,auto)_minmax(0,1fr)] lg:gap-8 xl:gap-14 2xl:gap-20">
 
             {/* ======================================
                 LEFT — HERO TEXT

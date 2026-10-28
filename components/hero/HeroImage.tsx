@@ -33,8 +33,8 @@ export default function HeroImage({
 }: HeroImageProps) {
   const imageRef = useRef<HTMLDivElement | null>(null);
 
-  const REAL_IMAGE = "/images/manya.png";
-  const SKETCH_IMAGE = "/images/manya-sketch .png";
+  const SKETCH_IMAGE = "/images/Manya sketch.png";
+  const REAL_IMAGE = "/images/Mnaya rreal.jpeg";
 
   const [isHovered, setIsHovered] = useState(false);
   const [isFrameSelected, setIsFrameSelected] = useState(false);
@@ -271,7 +271,7 @@ useEffect(() => {
           }}
           onMouseLeave={handlePointerLeave}
           onClick={handleImageClick}
-          className="group relative isolate h-[420px] w-[270px] cursor-none overflow-visible sm:h-[500px] sm:w-[320px] md:h-[570px] md:w-[365px] lg:h-[500px] lg:w-[320px] xl:h-[600px] xl:w-[385px] 2xl:h-[660px] 2xl:w-[425px]"
+          className="group relative isolate h-[min(127.5vw,420px)] w-[min(82vw,270px)] cursor-none overflow-visible sm:h-[500px] sm:w-[320px] md:h-[570px] md:w-[365px] lg:h-[500px] lg:w-[320px] xl:h-[600px] xl:w-[385px] 2xl:h-[660px] 2xl:w-[425px]"
           style={{
             touchAction: "none",
           }}
@@ -280,17 +280,26 @@ useEffect(() => {
 
             <Image
               src={REAL_IMAGE}
-              alt="Manya Parwal"
+              alt="Portrait of Manya Parwal outdoors"
               fill
               priority
               fetchPriority="high"
-              sizes="(max-width: 640px) 270px, (max-width: 768px) 320px, (max-width: 1024px) 365px, (max-width: 1280px) 320px, (max-width: 1536px) 385px, 425px"
-              className="pointer-events-none select-none object-cover object-top"
+              sizes="(max-width: 329px) 82vw, (max-width: 639px) 270px, (max-width: 767px) 320px, (max-width: 1023px) 365px, (max-width: 1279px) 320px, (max-width: 1535px) 385px, 425px"
+              className="pointer-events-none select-none object-cover object-center"
               draggable={false}
             />
 
             <div
-              className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300 ease-out"
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-[5]"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 50% 42%, transparent 36%, rgba(15,17,21,0.28) 100%), linear-gradient(180deg, rgba(15,17,21,0.08) 0%, transparent 34%, rgba(15,17,21,0.3) 100%)",
+              }}
+            />
+
+            <div
+              className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-500 ease-out"
               style={{
                 opacity: revealOpacity,
                 clipPath: `circle(${isHovered ? 95 : 0}px at ${smoothPosition.x}% ${smoothPosition.y}%)`,
@@ -304,8 +313,8 @@ useEffect(() => {
                 fill
                 loading="lazy"
                 decoding="async"
-                sizes="(max-width: 640px) 270px, (max-width: 768px) 320px, (max-width: 1024px) 365px, (max-width: 1280px) 320px, (max-width: 1536px) 385px, 425px"
-                className="pointer-events-none select-none object-cover object-top"
+                sizes="(max-width: 329px) 82vw, (max-width: 639px) 270px, (max-width: 767px) 320px, (max-width: 1023px) 365px, (max-width: 1279px) 320px, (max-width: 1535px) 385px, 425px"
+                className="pointer-events-none select-none object-cover object-center"
                 draggable={false}
               />
             </div>

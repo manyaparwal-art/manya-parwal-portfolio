@@ -11,7 +11,7 @@ export default function HeroText({
       {/* SUBTITLE */}
       <div className="overflow-hidden">
         <p
-          className={`hero-subtitle mb-7 text-[9px] font-medium uppercase tracking-[0.38em] text-white/40 transition-[opacity,transform,filter] delay-[100ms] duration-700 ease-[cubic-bezier(.16,1,.3,1)] sm:mb-8 sm:text-[10px] lg:mb-7 xl:text-[11px] ${
+          className={`hero-subtitle mb-7 text-[9px] font-medium uppercase tracking-[0.34em] text-white/50 transition-[opacity,transform,filter] delay-[100ms] duration-700 ease-[cubic-bezier(.16,1,.3,1)] sm:mb-8 sm:text-[10px] lg:mb-7 xl:text-[11px] ${
             isVisible
               ? "translate-y-0 opacity-100 blur-0"
               : "translate-y-5 opacity-0 blur-[3px]"
@@ -57,7 +57,7 @@ export default function HeroText({
 
       {/* DESCRIPTION */}
       <p
-        className={`hero-copy mx-auto mt-8 max-w-[470px] text-[15px] leading-7 text-white/42 transition-[opacity,transform,filter] delay-[440ms] duration-[850ms] ease-[cubic-bezier(.16,1,.3,1)] sm:mt-10 sm:text-[17px] sm:leading-8 lg:mx-0 lg:mt-8 lg:max-w-[360px] lg:text-[14px] lg:leading-7 xl:mt-10 xl:max-w-[430px] xl:text-[16px] xl:leading-8 ${
+        className={`hero-copy mx-auto mt-8 max-w-[470px] text-[15px] leading-7 text-white/55 transition-[opacity,transform,filter] delay-[440ms] duration-[850ms] ease-[cubic-bezier(.16,1,.3,1)] sm:mt-10 sm:text-[17px] sm:leading-8 lg:mx-0 lg:mt-8 lg:max-w-[360px] lg:text-[14px] lg:leading-7 xl:mt-10 xl:max-w-[430px] xl:text-[16px] xl:leading-8 ${
           isVisible
             ? "translate-y-0 opacity-100 blur-0"
             : "translate-y-6 opacity-0 blur-[4px]"
